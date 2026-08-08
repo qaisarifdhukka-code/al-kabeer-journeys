@@ -1,13 +1,20 @@
 # AL-KABEER Tours & Travels — Hajj & Umrah Website
 
-Production-ready marketing site built from the four supplied screens (Home, Hajj Packages, Umrah Packages, Contact), styled in the green/gold Material palette from those files, with three-city package browsing (Mumbai, Kolkata, Gujarat) driven by local JSON — no backend.
+Production-ready marketing site built from the four supplied screens (Home, Hajj Packages, Umrah Packages, Contact), with three-city package browsing (Mumbai, Kolkata, Gujarat) driven by local JSON — no backend.
 
-## Design system
+## Design system — taste of Al Multazim + Classic Tour, not generic AI
 
-- Colors taken verbatim from the supplied HTML tokens: primary `#00501e`, primary-container `#006b2b`, secondary-container gold `#fed65b`, background `#f7f9ff`, surface-container `#ebeef3`, on-surface `#181c20`, outline-variant `#bfcabb`. Converted to oklch tokens in `src/styles.css`.
-- Fonts: Manrope (headings) + Plus Jakarta Sans (body), Material Symbols Outlined for icons, loaded via `<link>` in the root route.
-- Layout density and card/rounded-corner treatment follow the screens; reference-site cues (Al Multazim, Go Classic Tour) inform section ordering only, not the visual style.
-- Brand logo recreated as markup (green tile + AL-KABEER wordmark + "For Quality Touring Since 1994" tagline) so it stays crisp; hero and package imagery hotlinked from the URLs in the provided HTML.
+The two reference sites share a concrete, traditional travel-agency look. AL-KABEER inherits that discipline, with the brand's own green from the logo instead of their navy/blue:
+
+- Flat, solid color blocks only. No purple/indigo, no glassmorphism, no soft AI gradients, no gradient text, no gradient buttons, no glow shadows. Section backgrounds alternate solid white / very light grey (`#f4f6f8`) / deep brand green band — exactly the banded rhythm of both references.
+- Palette: deep green `#00501e` (headers, footer, bands, section headings), mid green `#006b2b` (hover, icon tiles), gold/amber `#fbbf24`–`#fed65b` for primary CTA buttons and underline accents (Classic Tour's yellow Submit button, Al Multazim's gold accents), white surfaces, `#181c20` text, thin `#e2e6ea` borders.
+- Page structure copied from the references: slim top utility bar with phone + WhatsApp numbers, centered logo row, full-width green nav strip with icon+label links, then a photographic banner with page title and Home > Page breadcrumb on every inner page (as in the Classic Tour contact screenshot). Footer: dark green, 4 columns (Packages / Useful Links / Contact Details / Social), an approvals-and-licences logo strip above it (Vision 2030, Haj Committee, IATA style), copyright bar below.
+- Cards: square-ish corners (4–8px radius), 1px border, flat white, small badge chips for city/seats, price shown large in green with a struck-through old price, gold "Book Now" / green "View Details" buttons — the Classic Tour package-card pattern.
+- Section headings: centered, serif-ish weight, with a short gold divider under them; no oversized hero typography experiments.
+- Type: Manrope (headings) + Plus Jakarta Sans (body), Material Symbols Outlined icons, loaded via `<link>` in the root route. Icons are small and functional, sitting inside nav links and beside contact rows, never large decorative illustration icons.
+- Motion: restrained — hover color/border changes and simple carousel arrows only. No scroll-reveal on every element.
+- Brand logo recreated as markup (green tile + AL-KABEER wordmark + "For Quality Touring Since 1994" tagline); hero and package imagery hotlinked from the URLs in the provided HTML.
+
 
 ## City model
 
