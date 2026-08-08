@@ -1,0 +1,247 @@
+{
+  "itineraries": {
+    "hajj-short": [
+      { "day": "Day 1", "title": "Departure & arrival in Jeddah", "detail": "Group assembles at the departure airport with our team, boards the flight and is received at Jeddah by our Saudi ground staff." },
+      { "day": "Day 2 – 5", "title": "Makkah – Umrah & preparation", "detail": "Transfer to the Makkah hotel, perform Umrah with a guide, daily lectures on Hajj rites and Haram prayers." },
+      { "day": "Day 6 – 11", "title": "Mina, Arafat & Muzdalifah", "detail": "Shifting Hajj arrangements with air-cooled tents, transport between the holy sites, meals and medical support throughout." },
+      { "day": "Day 12 – 15", "title": "Makkah – Tawaf al-Ziyarah", "detail": "Return to Makkah for Tawaf al-Ziyarah, rest days and optional Ziyarat of historic sites." },
+      { "day": "Day 16 – 19", "title": "Madinah", "detail": "Travel to Madinah for prayers at Masjid an-Nabawi, Riyadh-ul-Jannah visits and Ziyarat of Uhud, Quba and Qiblatain." },
+      { "day": "Day 20", "title": "Return journey", "detail": "Transfer to the airport and flight back home with our escort." }
+    ],
+    "hajj-standard": [
+      { "day": "Day 1 – 2", "title": "Departure & arrival", "detail": "Assisted departure, flight and reception in Jeddah, transfer to Makkah." },
+      { "day": "Day 3 – 12", "title": "Makkah – Umrah & Ibadah", "detail": "Umrah with a guide, daily Haram prayers, Hajj training sessions and Ziyarat of Makkah." },
+      { "day": "Day 13 – 18", "title": "Days of Hajj", "detail": "Mina, Arafat and Muzdalifah with tent accommodation, transport, meals and 24x7 team support." },
+      { "day": "Day 19 – 26", "title": "Makkah after Hajj", "detail": "Tawaf al-Ziyarah, rest and additional Umrah opportunities." },
+      { "day": "Day 27 – 34", "title": "Madinah", "detail": "Eight nights in Madinah near the Haram with full Ziyarat programme." },
+      { "day": "Day 35", "title": "Return journey", "detail": "Airport transfer and flight home." }
+    ],
+    "hajj-economy": [
+      { "day": "Day 1 – 3", "title": "Departure & Madinah first", "detail": "Flight to Madinah, hotel check-in and prayers at Masjid an-Nabawi." },
+      { "day": "Day 4 – 10", "title": "Madinah stay", "detail": "Ziyarat of Uhud, Quba, Qiblatain and Jannat al-Baqi with a guide." },
+      { "day": "Day 11 – 22", "title": "Makkah – Umrah & Ibadah", "detail": "Travel to Makkah in Ihram, perform Umrah, Haram prayers and Hajj preparation lectures." },
+      { "day": "Day 23 – 28", "title": "Days of Hajj", "detail": "Mina, Arafat and Muzdalifah with economy tent category, transport and meals." },
+      { "day": "Day 29 – 39", "title": "Makkah after Hajj", "detail": "Tawaf al-Ziyarah, rest days and Ziyarat of Makkah." },
+      { "day": "Day 40", "title": "Return journey", "detail": "Transfer to Jeddah airport and flight home." }
+    ],
+    "umrah-express": [
+      { "day": "Day 1", "title": "Departure", "detail": "Meet our team at the airport, assisted check-in and flight to Jeddah." },
+      { "day": "Day 2 – 5", "title": "Makkah", "detail": "Transfer to the hotel, Umrah with a guide and prayers at Masjid al-Haram." },
+      { "day": "Day 6 – 9", "title": "Madinah", "detail": "Road transfer to Madinah, Masjid an-Nabawi prayers and Ziyarat programme." },
+      { "day": "Day 10", "title": "Return journey", "detail": "Airport transfer and flight back home." }
+    ],
+    "umrah-deluxe": [
+      { "day": "Day 1", "title": "Departure", "detail": "Group assembly, assisted check-in and flight to Jeddah." },
+      { "day": "Day 2 – 7", "title": "Makkah", "detail": "Five-star hotel walking distance from the Haram, Umrah with a guide, daily prayers." },
+      { "day": "Day 8", "title": "Ziyarat of Makkah", "detail": "Guided visit to Jabal al-Noor, Mina, Arafat and Muzdalifah." },
+      { "day": "Day 9 – 14", "title": "Madinah", "detail": "Hotel facing the Haram, Riyadh-ul-Jannah visits and full Ziyarat programme." },
+      { "day": "Day 15", "title": "Return journey", "detail": "Transfer to Madinah airport and flight home." }
+    ],
+    "umrah-extended": [
+      { "day": "Day 1", "title": "Departure", "detail": "Assisted departure and flight to Jeddah with our escort." },
+      { "day": "Day 2 – 9", "title": "Makkah", "detail": "Umrah on arrival, eight nights close to the Haram with daily Ibadah support." },
+      { "day": "Day 10 – 11", "title": "Ziyarat & second Umrah", "detail": "Ziyarat of Makkah and an optional second Umrah from Masjid Ayesha." },
+      { "day": "Day 12 – 19", "title": "Madinah", "detail": "Eight nights in Madinah with Ziyarat of Uhud, Quba, Qiblatain and the date farms." },
+      { "day": "Day 20", "title": "Return journey", "detail": "Airport transfer and flight back home." }
+    ]
+  },
+  "packages": [
+    {
+      "id": "hjm1", "slug": "20-days-short-stay-shifting-hajj-mumbai", "type": "hajj", "city": "mumbai",
+      "title": "20 Days Short Stay Shifting Hajj", "days": 20, "departure": "Mumbai (BOM)", "season": "Hajj 2027",
+      "badge": "Best Seller", "seatsLeft": 8, "image": "hajj1", "itinerary": "hajj-short",
+      "priceFrom": 585000, "priceOld": 625000, "meals": "Buffet breakfast & dinner",
+      "hotelMakkah": { "name": "Swissotel Al Maqam", "stars": 5, "distance": "150 m from Haram" },
+      "hotelMadinah": { "name": "Frontel Al Harithia", "stars": 5, "distance": "200 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 585000 }, { "type": "Quad sharing", "price": 625000 }, { "type": "Triple sharing", "price": 685000 }, { "type": "Double sharing", "price": 745000 }],
+      "highlights": ["Shifting Hajj with air-cooled Mina tents", "Direct flight from Mumbai", "Hajj training sessions before departure", "Experienced Mumbai-based group leader"]
+    },
+    {
+      "id": "hjm2", "slug": "35-days-comprehensive-hajj-mumbai", "type": "hajj", "city": "mumbai",
+      "title": "35 Days Comprehensive Hajj", "days": 35, "departure": "Mumbai (BOM)", "season": "Hajj 2027",
+      "badge": "Premium", "seatsLeft": 12, "image": "hajj2", "itinerary": "hajj-standard",
+      "priceFrom": 495000, "priceOld": 530000, "meals": "Three meals daily",
+      "hotelMakkah": { "name": "Elaf Al Mashaer", "stars": 4, "distance": "450 m from Haram" },
+      "hotelMadinah": { "name": "Al Eiman Royal", "stars": 4, "distance": "300 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 495000 }, { "type": "Quad sharing", "price": 525000 }, { "type": "Triple sharing", "price": 575000 }, { "type": "Double sharing", "price": 640000 }],
+      "highlights": ["Longer Madinah stay of 8 nights", "Full Ziyarat of Makkah and Madinah", "Doctor on call with the group", "Laundry and Indian food arrangements"]
+    },
+    {
+      "id": "hjm3", "slug": "40-days-economy-hajj-mumbai", "type": "hajj", "city": "mumbai",
+      "title": "40 Days Economy Hajj Package", "days": 40, "departure": "Mumbai (BOM)", "season": "Hajj 2027",
+      "badge": "Value", "seatsLeft": 20, "image": "hajj3", "itinerary": "hajj-economy",
+      "priceFrom": 425000, "priceOld": 455000, "meals": "Three meals daily",
+      "hotelMakkah": { "name": "Al Kiswah Towers", "stars": 3, "distance": "1.2 km, shuttle service" },
+      "hotelMadinah": { "name": "Rawdat Al Aqeeq", "stars": 3, "distance": "500 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 425000 }, { "type": "Quad sharing", "price": 450000 }, { "type": "Triple sharing", "price": 495000 }, { "type": "Double sharing", "price": 545000 }],
+      "highlights": ["Most affordable Hajj category", "Madinah first itinerary", "Shuttle buses to the Haram", "Group of 45 pilgrims maximum"]
+    },
+    {
+      "id": "hjk1", "slug": "20-days-short-stay-shifting-hajj-kolkata", "type": "hajj", "city": "kolkata",
+      "title": "20 Days Short Stay Shifting Hajj", "days": 20, "departure": "Kolkata (CCU)", "season": "Hajj 2027",
+      "badge": "Best Seller", "seatsLeft": 6, "image": "hajj1", "itinerary": "hajj-short",
+      "priceFrom": 595000, "priceOld": 635000, "meals": "Buffet breakfast & dinner",
+      "hotelMakkah": { "name": "Swissotel Al Maqam", "stars": 5, "distance": "150 m from Haram" },
+      "hotelMadinah": { "name": "Frontel Al Harithia", "stars": 5, "distance": "200 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 595000 }, { "type": "Quad sharing", "price": 635000 }, { "type": "Triple sharing", "price": 695000 }, { "type": "Double sharing", "price": 755000 }],
+      "highlights": ["Shifting Hajj with air-cooled Mina tents", "Departure from Kolkata with Bengali-speaking guide", "Pre-departure training at our Zakaria Street office", "Assistance with Haj Committee formalities"]
+    },
+    {
+      "id": "hjk2", "slug": "35-days-comprehensive-hajj-kolkata", "type": "hajj", "city": "kolkata",
+      "title": "35 Days Comprehensive Hajj", "days": 35, "departure": "Kolkata (CCU)", "season": "Hajj 2027",
+      "badge": "Premium", "seatsLeft": 10, "image": "hajj2", "itinerary": "hajj-standard",
+      "priceFrom": 505000, "priceOld": 540000, "meals": "Three meals daily",
+      "hotelMakkah": { "name": "Elaf Al Mashaer", "stars": 4, "distance": "450 m from Haram" },
+      "hotelMadinah": { "name": "Al Eiman Royal", "stars": 4, "distance": "300 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 505000 }, { "type": "Quad sharing", "price": 535000 }, { "type": "Triple sharing", "price": 585000 }, { "type": "Double sharing", "price": 650000 }],
+      "highlights": ["8 nights in Madinah", "Bengali and Urdu speaking group leaders", "Full Ziyarat programme", "Indian and Bengali meal options"]
+    },
+    {
+      "id": "hjk3", "slug": "40-days-economy-hajj-kolkata", "type": "hajj", "city": "kolkata",
+      "title": "40 Days Economy Hajj Package", "days": 40, "departure": "Kolkata (CCU)", "season": "Hajj 2027",
+      "badge": "Value", "seatsLeft": 18, "image": "hajj3", "itinerary": "hajj-economy",
+      "priceFrom": 435000, "priceOld": 465000, "meals": "Three meals daily",
+      "hotelMakkah": { "name": "Al Kiswah Towers", "stars": 3, "distance": "1.2 km, shuttle service" },
+      "hotelMadinah": { "name": "Rawdat Al Aqeeq", "stars": 3, "distance": "500 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 435000 }, { "type": "Quad sharing", "price": 460000 }, { "type": "Triple sharing", "price": 505000 }, { "type": "Double sharing", "price": 555000 }],
+      "highlights": ["Economy category for larger families", "Madinah first itinerary", "Shuttle buses to the Haram", "Local support desk in Kolkata"]
+    },
+    {
+      "id": "hjg1", "slug": "20-days-short-stay-shifting-hajj-gujarat", "type": "hajj", "city": "gujarat",
+      "title": "20 Days Short Stay Shifting Hajj", "days": 20, "departure": "Ahmedabad (AMD)", "season": "Hajj 2027",
+      "badge": "Best Seller", "seatsLeft": 9, "image": "hajj1", "itinerary": "hajj-short",
+      "priceFrom": 575000, "priceOld": 615000, "meals": "Buffet breakfast & dinner",
+      "hotelMakkah": { "name": "Swissotel Al Maqam", "stars": 5, "distance": "150 m from Haram" },
+      "hotelMadinah": { "name": "Frontel Al Harithia", "stars": 5, "distance": "200 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 575000 }, { "type": "Quad sharing", "price": 615000 }, { "type": "Triple sharing", "price": 675000 }, { "type": "Double sharing", "price": 735000 }],
+      "highlights": ["Shifting Hajj with air-cooled Mina tents", "Departure from Ahmedabad", "Gujarati speaking group leader", "Pick-up assistance from Surat and Vadodara"]
+    },
+    {
+      "id": "hjg2", "slug": "35-days-comprehensive-hajj-gujarat", "type": "hajj", "city": "gujarat",
+      "title": "35 Days Comprehensive Hajj", "days": 35, "departure": "Ahmedabad (AMD)", "season": "Hajj 2027",
+      "badge": "Premium", "seatsLeft": 14, "image": "hajj2", "itinerary": "hajj-standard",
+      "priceFrom": 485000, "priceOld": 520000, "meals": "Three meals daily",
+      "hotelMakkah": { "name": "Elaf Al Mashaer", "stars": 4, "distance": "450 m from Haram" },
+      "hotelMadinah": { "name": "Al Eiman Royal", "stars": 4, "distance": "300 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 485000 }, { "type": "Quad sharing", "price": 515000 }, { "type": "Triple sharing", "price": 565000 }, { "type": "Double sharing", "price": 630000 }],
+      "highlights": ["8 nights in Madinah", "Gujarati meal arrangements", "Full Ziyarat programme", "Doctor on call with the group"]
+    },
+    {
+      "id": "hjg3", "slug": "40-days-economy-hajj-gujarat", "type": "hajj", "city": "gujarat",
+      "title": "40 Days Economy Hajj Package", "days": 40, "departure": "Ahmedabad (AMD)", "season": "Hajj 2027",
+      "badge": "Value", "seatsLeft": 22, "image": "hajj3", "itinerary": "hajj-economy",
+      "priceFrom": 415000, "priceOld": 445000, "meals": "Three meals daily",
+      "hotelMakkah": { "name": "Al Kiswah Towers", "stars": 3, "distance": "1.2 km, shuttle service" },
+      "hotelMadinah": { "name": "Rawdat Al Aqeeq", "stars": 3, "distance": "500 m from Haram" },
+      "sharing": [{ "type": "Quint sharing", "price": 415000 }, { "type": "Quad sharing", "price": 440000 }, { "type": "Triple sharing", "price": 485000 }, { "type": "Double sharing", "price": 535000 }],
+      "highlights": ["Lowest Hajj fare from Gujarat", "Madinah first itinerary", "Shuttle buses to the Haram", "Family rooms available"]
+    },
+    {
+      "id": "umm1", "slug": "15-days-deluxe-umrah-mumbai", "type": "umrah", "city": "mumbai",
+      "title": "15 Days Deluxe Umrah Package", "days": 15, "departure": "Mumbai (BOM)", "season": "Umrah 2026-27",
+      "badge": "Most Popular", "seatsLeft": 15, "image": "umrah1", "itinerary": "umrah-deluxe",
+      "priceFrom": 129000, "priceOld": 145000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Pullman Zamzam", "stars": 5, "distance": "100 m from Haram" },
+      "hotelMadinah": { "name": "Anwar Al Madinah Movenpick", "stars": 5, "distance": "Facing the Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 129000 }, { "type": "Triple sharing", "price": 142000 }, { "type": "Double sharing", "price": 165000 }],
+      "highlights": ["Five-star hotels beside both Harams", "Guided Umrah and full Ziyarat", "Visa, insurance and Zamzam included", "Direct flight from Mumbai"]
+    },
+    {
+      "id": "umm2", "slug": "20-days-extended-deluxe-umrah-mumbai", "type": "umrah", "city": "mumbai",
+      "title": "20 Days Extended Deluxe Package", "days": 20, "departure": "Mumbai (BOM)", "season": "Umrah 2026-27",
+      "badge": "Long Stay", "seatsLeft": 12, "image": "umrah2", "itinerary": "umrah-extended",
+      "priceFrom": 158000, "priceOld": 172000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Hilton Suites Makkah", "stars": 5, "distance": "250 m from Haram" },
+      "hotelMadinah": { "name": "Frontel Al Harithia", "stars": 5, "distance": "200 m from Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 158000 }, { "type": "Triple sharing", "price": 172000 }, { "type": "Double sharing", "price": 198000 }],
+      "highlights": ["8 nights Makkah and 8 nights Madinah", "Second Umrah from Masjid Ayesha", "Ziyarat in air-conditioned coaches", "Ideal for families and senior pilgrims"]
+    },
+    {
+      "id": "umm3", "slug": "10-days-express-umrah-mumbai", "type": "umrah", "city": "mumbai",
+      "title": "10 Days Express Umrah Package", "days": 10, "departure": "Mumbai (BOM)", "season": "Umrah 2026-27",
+      "badge": "Quick Trip", "seatsLeft": 25, "image": "umrah3", "itinerary": "umrah-express",
+      "priceFrom": 89000, "priceOld": 98000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Al Kiswah Towers", "stars": 3, "distance": "1.2 km, shuttle service" },
+      "hotelMadinah": { "name": "Rawdat Al Aqeeq", "stars": 3, "distance": "500 m from Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 89000 }, { "type": "Triple sharing", "price": 96000 }, { "type": "Double sharing", "price": 112000 }],
+      "highlights": ["Short leave-friendly itinerary", "Umrah on the day of arrival", "Shuttle service to the Haram", "Visa and insurance included"]
+    },
+    {
+      "id": "umk1", "slug": "15-days-deluxe-umrah-kolkata", "type": "umrah", "city": "kolkata",
+      "title": "15 Days Deluxe Umrah Package", "days": 15, "departure": "Kolkata (CCU)", "season": "Umrah 2026-27",
+      "badge": "Most Popular", "seatsLeft": 14, "image": "umrah1", "itinerary": "umrah-deluxe",
+      "priceFrom": 135000, "priceOld": 149000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Pullman Zamzam", "stars": 5, "distance": "100 m from Haram" },
+      "hotelMadinah": { "name": "Anwar Al Madinah Movenpick", "stars": 5, "distance": "Facing the Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 135000 }, { "type": "Triple sharing", "price": 148000 }, { "type": "Double sharing", "price": 172000 }],
+      "highlights": ["Five-star hotels beside both Harams", "Bengali speaking guide", "Visa, insurance and Zamzam included", "Connecting flight via Dubai or Doha"]
+    },
+    {
+      "id": "umk2", "slug": "20-days-extended-deluxe-umrah-kolkata", "type": "umrah", "city": "kolkata",
+      "title": "20 Days Extended Deluxe Package", "days": 20, "departure": "Kolkata (CCU)", "season": "Umrah 2026-27",
+      "badge": "Long Stay", "seatsLeft": 10, "image": "umrah2", "itinerary": "umrah-extended",
+      "priceFrom": 164000, "priceOld": 178000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Hilton Suites Makkah", "stars": 5, "distance": "250 m from Haram" },
+      "hotelMadinah": { "name": "Frontel Al Harithia", "stars": 5, "distance": "200 m from Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 164000 }, { "type": "Triple sharing", "price": 178000 }, { "type": "Double sharing", "price": 205000 }],
+      "highlights": ["8 nights Makkah and 8 nights Madinah", "Second Umrah from Masjid Ayesha", "Bengali meal options", "Group leader from our Kolkata office"]
+    },
+    {
+      "id": "umk3", "slug": "10-days-express-umrah-kolkata", "type": "umrah", "city": "kolkata",
+      "title": "10 Days Express Umrah Package", "days": 10, "departure": "Kolkata (CCU)", "season": "Umrah 2026-27",
+      "badge": "Quick Trip", "seatsLeft": 22, "image": "umrah3", "itinerary": "umrah-express",
+      "priceFrom": 94000, "priceOld": 104000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Al Kiswah Towers", "stars": 3, "distance": "1.2 km, shuttle service" },
+      "hotelMadinah": { "name": "Rawdat Al Aqeeq", "stars": 3, "distance": "500 m from Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 94000 }, { "type": "Triple sharing", "price": 101000 }, { "type": "Double sharing", "price": 118000 }],
+      "highlights": ["Short leave-friendly itinerary", "Umrah on the day of arrival", "Shuttle service to the Haram", "Visa and insurance included"]
+    },
+    {
+      "id": "umg1", "slug": "15-days-deluxe-umrah-gujarat", "type": "umrah", "city": "gujarat",
+      "title": "15 Days Deluxe Umrah Package", "days": 15, "departure": "Ahmedabad (AMD)", "season": "Umrah 2026-27",
+      "badge": "Most Popular", "seatsLeft": 16, "image": "umrah1", "itinerary": "umrah-deluxe",
+      "priceFrom": 125000, "priceOld": 139000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Pullman Zamzam", "stars": 5, "distance": "100 m from Haram" },
+      "hotelMadinah": { "name": "Anwar Al Madinah Movenpick", "stars": 5, "distance": "Facing the Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 125000 }, { "type": "Triple sharing", "price": 138000 }, { "type": "Double sharing", "price": 160000 }],
+      "highlights": ["Five-star hotels beside both Harams", "Gujarati speaking guide", "Visa, insurance and Zamzam included", "Pick-up from Surat and Vadodara"]
+    },
+    {
+      "id": "umg2", "slug": "20-days-extended-deluxe-umrah-gujarat", "type": "umrah", "city": "gujarat",
+      "title": "20 Days Extended Deluxe Package", "days": 20, "departure": "Ahmedabad (AMD)", "season": "Umrah 2026-27",
+      "badge": "Long Stay", "seatsLeft": 11, "image": "umrah2", "itinerary": "umrah-extended",
+      "priceFrom": 152000, "priceOld": 168000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Hilton Suites Makkah", "stars": 5, "distance": "250 m from Haram" },
+      "hotelMadinah": { "name": "Frontel Al Harithia", "stars": 5, "distance": "200 m from Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 152000 }, { "type": "Triple sharing", "price": 166000 }, { "type": "Double sharing", "price": 192000 }],
+      "highlights": ["8 nights Makkah and 8 nights Madinah", "Second Umrah from Masjid Ayesha", "Gujarati meal arrangements", "Ideal for families and senior pilgrims"]
+    },
+    {
+      "id": "umg3", "slug": "10-days-express-umrah-gujarat", "type": "umrah", "city": "gujarat",
+      "title": "10 Days Express Umrah Package", "days": 10, "departure": "Ahmedabad (AMD)", "season": "Umrah 2026-27",
+      "badge": "Quick Trip", "seatsLeft": 24, "image": "umrah3", "itinerary": "umrah-express",
+      "priceFrom": 86000, "priceOld": 95000, "meals": "Breakfast & dinner",
+      "hotelMakkah": { "name": "Al Kiswah Towers", "stars": 3, "distance": "1.2 km, shuttle service" },
+      "hotelMadinah": { "name": "Rawdat Al Aqeeq", "stars": 3, "distance": "500 m from Haram" },
+      "sharing": [{ "type": "Quad sharing", "price": 86000 }, { "type": "Triple sharing", "price": 93000 }, { "type": "Double sharing", "price": 108000 }],
+      "highlights": ["Short leave-friendly itinerary", "Umrah on the day of arrival", "Shuttle service to the Haram", "Visa and insurance included"]
+    }
+  ],
+  "inclusions": [
+    "Return economy airfare from your departure city",
+    "Saudi Hajj or Umrah visa processing",
+    "Hotel accommodation in Makkah and Madinah as per package category",
+    "All ground transfers in air-conditioned coaches",
+    "Guided Umrah and Ziyarat of Makkah and Madinah",
+    "Meals as specified in the package",
+    "Experienced group leader from AL-KABEER",
+    "Zamzam water, Ihram bag and travel documents wallet"
+  ],
+  "exclusions": [
+    "Passport fees and personal document charges",
+    "Qurbani and personal shopping expenses",
+    "Laundry, phone calls and hotel extras",
+    "Any service not listed under inclusions",
+    "Cost arising from flight delays or changes beyond our control"
+  ]
+}

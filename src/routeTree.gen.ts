@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as HajjIndexRouteImport } from './routes/hajj.index'
+import { Route as HajjCityRouteImport } from './routes/hajj.$city'
+import { Route as PackagesSlugRouteImport } from './routes/packages.$slug'
+import { Route as UmrahIndexRouteImport } from './routes/umrah.index'
+import { Route as UmrahCityRouteImport } from './routes/umrah.$city'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HajjIndexRoute = HajjIndexRouteImport.update({
+  id: '/hajj/',
+  path: '/hajj/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HajjCityRoute = HajjCityRouteImport.update({
+  id: '/hajj/$city',
+  path: '/hajj/$city',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesSlugRoute = PackagesSlugRouteImport.update({
+  id: '/packages/$slug',
+  path: '/packages/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UmrahIndexRoute = UmrahIndexRouteImport.update({
+  id: '/umrah/',
+  path: '/umrah/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UmrahCityRoute = UmrahCityRouteImport.update({
+  id: '/umrah/$city',
+  path: '/umrah/$city',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/services': typeof ServicesRoute
+  '/hajj/$city': typeof HajjCityRoute
+  '/packages/$slug': typeof PackagesSlugRoute
+  '/umrah/$city': typeof UmrahCityRoute
+  '/hajj/': typeof HajjIndexRoute
+  '/umrah/': typeof UmrahIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/services': typeof ServicesRoute
+  '/hajj/$city': typeof HajjCityRoute
+  '/packages/$slug': typeof PackagesSlugRoute
+  '/umrah/$city': typeof UmrahCityRoute
+  '/hajj': typeof HajjIndexRoute
+  '/umrah': typeof UmrahIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/gallery': typeof GalleryRoute
+  '/services': typeof ServicesRoute
+  '/hajj/$city': typeof HajjCityRoute
+  '/packages/$slug': typeof PackagesSlugRoute
+  '/umrah/$city': typeof UmrahCityRoute
+  '/hajj/': typeof HajjIndexRoute
+  '/umrah/': typeof UmrahIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/gallery'
+    | '/services'
+    | '/hajj/$city'
+    | '/packages/$slug'
+    | '/umrah/$city'
+    | '/hajj/'
+    | '/umrah/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/gallery'
+    | '/services'
+    | '/hajj/$city'
+    | '/packages/$slug'
+    | '/umrah/$city'
+    | '/hajj'
+    | '/umrah'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/gallery'
+    | '/services'
+    | '/hajj/$city'
+    | '/packages/$slug'
+    | '/umrah/$city'
+    | '/hajj/'
+    | '/umrah/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
+  GalleryRoute: typeof GalleryRoute
+  ServicesRoute: typeof ServicesRoute
+  HajjCityRoute: typeof HajjCityRoute
+  PackagesSlugRoute: typeof PackagesSlugRoute
+  UmrahCityRoute: typeof UmrahCityRoute
+  HajjIndexRoute: typeof HajjIndexRoute
+  UmrahIndexRoute: typeof UmrahIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +182,92 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hajj/': {
+      id: '/hajj/'
+      path: '/hajj'
+      fullPath: '/hajj/'
+      preLoaderRoute: typeof HajjIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hajj/$city': {
+      id: '/hajj/$city'
+      path: '/hajj/$city'
+      fullPath: '/hajj/$city'
+      preLoaderRoute: typeof HajjCityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages/$slug': {
+      id: '/packages/$slug'
+      path: '/packages/$slug'
+      fullPath: '/packages/$slug'
+      preLoaderRoute: typeof PackagesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/umrah/': {
+      id: '/umrah/'
+      path: '/umrah'
+      fullPath: '/umrah/'
+      preLoaderRoute: typeof UmrahIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/umrah/$city': {
+      id: '/umrah/$city'
+      path: '/umrah/$city'
+      fullPath: '/umrah/$city'
+      preLoaderRoute: typeof UmrahCityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
+  GalleryRoute: GalleryRoute,
+  ServicesRoute: ServicesRoute,
+  HajjCityRoute: HajjCityRoute,
+  PackagesSlugRoute: PackagesSlugRoute,
+  UmrahCityRoute: UmrahCityRoute,
+  HajjIndexRoute: HajjIndexRoute,
+  UmrahIndexRoute: UmrahIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
