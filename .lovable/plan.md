@@ -51,7 +51,7 @@ each package has id, slug, title, type (hajj/umrah), city, duration, departure a
 
 ## Pages
 
-- `/` Home: hero with Quranic line and package finder (type + city + duration), why-choose-us, featured packages by selected city, services strip, 3-branch cards, testimonials, CTA band.
+- `/` Home, in the reference order: top bar + logo + nav, photo hero with the Quranic line and a package finder (type + city + duration), welcome/about block with portrait, "Explore Our Hajj Packages" (city tabs + card carousel), "Explore Our Umrah & Ziyarat Packages" (same pattern), Makkah/Madinah hotel cards, documents-required section, why-choose-us, 3-branch cards, gallery mosaic, testimonials, FAQ accordion, single green CTA band, footer.
 - `/hajj` + 3 city pages, `/umrah` + 3 city pages, `/packages/$slug`
 - `/about` — since 1994 story, licenses/approvals, leadership, milestones
 - `/services` — Hajj, Umrah, Visa assistance, Ziyarat tours, Flights, Hotel booking, Group & family tours, Laundry/food support
