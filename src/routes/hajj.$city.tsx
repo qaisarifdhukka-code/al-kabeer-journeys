@@ -34,7 +34,7 @@ export const Route = createFileRoute("/hajj/$city")({
 });
 
 function HajjCityPage() {
-  const { city } = Route.useLoaderData();
+  const { city } = Route.useLoaderData() as { city: CityKey };
   const branch = getBranch(city);
   const packages = getPackages("hajj", city);
   const label = CITY_LABELS[city];

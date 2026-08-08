@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HajjIndexRouteImport } from './routes/hajj.index'
+import { Route as HajjCityRouteImport } from './routes/hajj.$city'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const HajjIndexRoute = HajjIndexRouteImport.update({
   path: '/hajj/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HajjCityRoute = HajjCityRouteImport.update({
+  id: '/hajj/$city',
+  path: '/hajj/$city',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/hajj/$city': typeof HajjCityRoute
   '/hajj/': typeof HajjIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/hajj/$city': typeof HajjCityRoute
   '/hajj': typeof HajjIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/hajj/$city': typeof HajjCityRoute
   '/hajj/': typeof HajjIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/hajj/'
+  fullPaths: '/' | '/hajj/$city' | '/hajj/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/hajj'
-  id: '__root__' | '/' | '/hajj/'
+  to: '/' | '/hajj/$city' | '/hajj'
+  id: '__root__' | '/' | '/hajj/$city' | '/hajj/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HajjCityRoute: typeof HajjCityRoute
   HajjIndexRoute: typeof HajjIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HajjIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hajj/$city': {
+      id: '/hajj/$city'
+      path: '/hajj/$city'
+      fullPath: '/hajj/$city'
+      preLoaderRoute: typeof HajjCityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HajjCityRoute: HajjCityRoute,
   HajjIndexRoute: HajjIndexRoute,
 }
 export const routeTree = rootRouteImport
