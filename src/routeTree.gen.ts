@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HajjIndexRouteImport } from './routes/hajj.index'
 import { Route as HajjCityRouteImport } from './routes/hajj.$city'
+import { Route as PackagesSlugRouteImport } from './routes/packages.$slug'
 import { Route as UmrahIndexRouteImport } from './routes/umrah.index'
 import { Route as UmrahCityRouteImport } from './routes/umrah.$city'
 
@@ -30,6 +31,11 @@ const HajjCityRoute = HajjCityRouteImport.update({
   path: '/hajj/$city',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PackagesSlugRoute = PackagesSlugRouteImport.update({
+  id: '/packages/$slug',
+  path: '/packages/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UmrahIndexRoute = UmrahIndexRouteImport.update({
   id: '/umrah/',
   path: '/umrah/',
@@ -44,6 +50,7 @@ const UmrahCityRoute = UmrahCityRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/hajj/$city': typeof HajjCityRoute
+  '/packages/$slug': typeof PackagesSlugRoute
   '/umrah/$city': typeof UmrahCityRoute
   '/hajj/': typeof HajjIndexRoute
   '/umrah/': typeof UmrahIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/hajj/$city': typeof HajjCityRoute
+  '/packages/$slug': typeof PackagesSlugRoute
   '/umrah/$city': typeof UmrahCityRoute
   '/hajj': typeof HajjIndexRoute
   '/umrah': typeof UmrahIndexRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/hajj/$city': typeof HajjCityRoute
+  '/packages/$slug': typeof PackagesSlugRoute
   '/umrah/$city': typeof UmrahCityRoute
   '/hajj/': typeof HajjIndexRoute
   '/umrah/': typeof UmrahIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/hajj/$city' | '/umrah/$city' | '/hajj/' | '/umrah/'
+  fullPaths:
+    | '/'
+    | '/hajj/$city'
+    | '/packages/$slug'
+    | '/umrah/$city'
+    | '/hajj/'
+    | '/umrah/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/hajj/$city' | '/umrah/$city' | '/hajj' | '/umrah'
-  id: '__root__' | '/' | '/hajj/$city' | '/umrah/$city' | '/hajj/' | '/umrah/'
+  to:
+    | '/'
+    | '/hajj/$city'
+    | '/packages/$slug'
+    | '/umrah/$city'
+    | '/hajj'
+    | '/umrah'
+  id:
+    | '__root__'
+    | '/'
+    | '/hajj/$city'
+    | '/packages/$slug'
+    | '/umrah/$city'
+    | '/hajj/'
+    | '/umrah/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HajjCityRoute: typeof HajjCityRoute
+  PackagesSlugRoute: typeof PackagesSlugRoute
   UmrahCityRoute: typeof UmrahCityRoute
   HajjIndexRoute: typeof HajjIndexRoute
   UmrahIndexRoute: typeof UmrahIndexRoute
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HajjCityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/packages/$slug': {
+      id: '/packages/$slug'
+      path: '/packages/$slug'
+      fullPath: '/packages/$slug'
+      preLoaderRoute: typeof PackagesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/umrah/': {
       id: '/umrah/'
       path: '/umrah'
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HajjCityRoute: HajjCityRoute,
+  PackagesSlugRoute: PackagesSlugRoute,
   UmrahCityRoute: UmrahCityRoute,
   HajjIndexRoute: HajjIndexRoute,
   UmrahIndexRoute: UmrahIndexRoute,
