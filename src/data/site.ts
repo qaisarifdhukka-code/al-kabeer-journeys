@@ -86,7 +86,7 @@ export const CITY_LABELS: Record<CityKey, string> = {
 };
 
 export function getBranch(city: CityKey): Branch {
-  return BRANCHES.find((b) => b.key === city) ?? BRANCHES[0];
+  return BRANCHES.find((b) => b.key === city) ?? BRANCHES[0]!;
 }
 
 export function isCityKey(value: string): value is CityKey {
