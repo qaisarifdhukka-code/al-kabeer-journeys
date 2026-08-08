@@ -17,8 +17,25 @@ The two reference sites share a concrete, traditional travel-agency look. AL-KAB
 - Motion: restrained — hover color/border changes and simple carousel arrows only. No scroll-reveal on every element.
 - Brand logo recreated as markup (green tile + AL-KABEER wordmark + "For Quality Touring Since 1994" tagline); hero and package imagery hotlinked from the URLs in the provided HTML.
 
+## What each reference contributes
+
+Classic Tour (goclassictour.com) — the layout engine:
+- Slim white top bar with call + WhatsApp numbers on either side of a centered logo, then one thin colored nav strip with small icon + label links.
+- Photographic banner with a centered page title (and Home > Page breadcrumb on inner pages).
+- Package sections repeated per category ("Explore Our Hajj Packages", "Explore Our Umrah & Ziyarat Packages"), each with pill tab filters above the cards, a "View all" link on the right, and a horizontal card carousel with side arrows and dots.
+- Card anatomy: image left/top, small colored ribbon badge, title, icon rows for duration / hotel / meals, struck-through price + bold current price, then two buttons (solid primary "Book Now" + light secondary "View Details").
+- Supporting sections: Makkah hotels, Madinah hotels, transportation options, blog cards, an SEO paragraph block, FAQ accordion, then the 4-column footer with an approvals/licence logo strip.
+
+Al Multazim (almultazim.in) — the tone:
+- Centered uppercase gold/accent section titles ("HAJJ", "UMRAH", "OUR BEST MEMORIES") over calm white space.
+- Deep solid brand-color hero and bands with an arched/rounded photo panel, no gradient noise.
+- Dedicated "Documents Required" section with numbered icon rows, an About block with a portrait beside body copy, and a memories/gallery mosaic.
+- Contact block: dark brand panel with address/phone/email on the left, plain underlined form fields on the right.
+
+AL-KABEER keeps this exact structural taste, in green + gold on mostly white, per the color-balance rule above.
 
 ## City model
+
 
 - Global city context with a header city switcher; choice persisted in localStorage.
 - Dedicated routes per city for SEO:
@@ -34,7 +51,7 @@ each package has id, slug, title, type (hajj/umrah), city, duration, departure a
 
 ## Pages
 
-- `/` Home: hero with Quranic line and package finder (type + city + duration), why-choose-us, featured packages by selected city, services strip, 3-branch cards, testimonials, CTA band.
+- `/` Home, in the reference order: top bar + logo + nav, photo hero with the Quranic line and a package finder (type + city + duration), welcome/about block with portrait, "Explore Our Hajj Packages" (city tabs + card carousel), "Explore Our Umrah & Ziyarat Packages" (same pattern), Makkah/Madinah hotel cards, documents-required section, why-choose-us, 3-branch cards, gallery mosaic, testimonials, FAQ accordion, single green CTA band, footer.
 - `/hajj` + 3 city pages, `/umrah` + 3 city pages, `/packages/$slug`
 - `/about` — since 1994 story, licenses/approvals, leadership, milestones
 - `/services` — Hajj, Umrah, Visa assistance, Ziyarat tours, Flights, Hotel booking, Group & family tours, Laundry/food support
