@@ -9,7 +9,9 @@ import {
   relatedPackages,
   type TourPackage,
 } from "@/data/packages";
-import { CITY_LABELS, formatINR, getBranch, whatsappLink } from "@/data/site";
+import { getBranch, CITY_LABELS, whatsappLink, formatINR } from "@/data/site";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { FadeIn } from "@/components/FadeIn";
 
 export const Route = createFileRoute("/packages/$slug")({
   loader: ({ params }) => {
@@ -57,7 +59,8 @@ function PackageDetail() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
           <div>
-            {/* Pill stat badges */}
+            <FadeIn>
+              {/* Pill stat badges */}
             <div className="flex flex-wrap gap-3 border-b border-border pb-6">
               <span className="flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
                 <CalendarDays className="size-3.5" aria-hidden="true" /> {pkg.days} days
@@ -81,7 +84,9 @@ function PackageDetail() {
                 </li>
               ))}
             </ul>
+            </FadeIn>
 
+            <FadeIn>
             <h2 className="mt-10 font-heading text-xl font-extrabold text-foreground">Hotels</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               {[
@@ -102,29 +107,25 @@ function PackageDetail() {
                 </div>
               ))}
             </div>
+            </FadeIn>
 
+            <FadeIn>
             <h2 className="mt-10 font-heading text-xl font-extrabold text-foreground">Itinerary</h2>
-            <ol className="mt-4 space-y-4">
+            <Accordion type="single" collapsible className="mt-4 w-full">
               {pkg.itinerary.map((step) => (
-                <li key={step.day} className="flex gap-4">
-                  {/* Timeline dot */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 ring-2 ring-primary/30">
-                      <div className="size-2 rounded-full bg-primary" />
-                    </div>
-                    <div className="mt-1 w-0.5 flex-1 bg-primary/15" />
-                  </div>
-                  <div className="pb-4">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-primary">
-                      {step.day}
-                    </p>
-                    <p className="mt-1 font-heading text-sm font-bold text-foreground">{step.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
-                  </div>
-                </li>
+                <AccordionItem key={step.day} value={step.day}>
+                  <AccordionTrigger className="text-sm font-bold text-foreground hover:no-underline">
+                    {step.day}: {step.title}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                    {step.detail}
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </ol>
+            </Accordion>
+            </FadeIn>
 
+            <FadeIn>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="rounded-xl bg-card p-5 shadow-card">
                 <h3 className="font-heading text-base font-bold text-foreground">Inclusions</h3>
@@ -149,6 +150,7 @@ function PackageDetail() {
                 </ul>
               </div>
             </div>
+            </FadeIn>
           </div>
 
           {/* Booking sidebar */}

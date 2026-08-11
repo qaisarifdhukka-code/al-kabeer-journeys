@@ -49,8 +49,8 @@ export function PageBanner({
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/75 via-foreground/50 to-foreground/30" />
       <div className="absolute inset-0 flex items-center">
         <div className="mx-auto w-full max-w-7xl px-4 text-primary-foreground">
-          <h1 className="font-display text-3xl font-bold sm:text-4xl drop-shadow-md">{title}</h1>
-          {subtitle && <p className="mt-3 max-w-2xl text-sm opacity-90 sm:text-base">{subtitle}</p>}
+          <h1 className="font-display text-3xl font-bold sm:text-4xl drop-shadow-md text-shadow-md">{title}</h1>
+          {subtitle && <p className="mt-3 max-w-2xl text-sm opacity-90 sm:text-base drop-shadow-sm">{subtitle}</p>}
           {/* Breadcrumb pill */}
           <p className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs backdrop-blur-sm">
             <Link to="/" className="hover:text-gold transition-colors">

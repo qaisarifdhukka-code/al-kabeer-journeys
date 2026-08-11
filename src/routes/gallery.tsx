@@ -34,14 +34,14 @@ function GalleryPage() {
       />
       <Section>
         <SectionHeading eyebrow="Memories" title="Our pilgrims, our journeys" />
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {GALLERY_IMAGES.map((img, i) => (
+        <div className="mt-10 columns-1 gap-4 sm:columns-2 md:columns-3 lg:columns-4 space-y-4">
+          {GALLERY_IMAGES.map((img) => (
             <img
               key={img.src}
               src={img.src}
               alt={img.alt}
               loading="lazy"
-              className={`w-full rounded-xl object-cover shadow-card transition-transform duration-300 hover:scale-[1.03] ${i % 5 === 0 ? "h-72 lg:col-span-2" : "h-56"}`}
+              className="w-full break-inside-avoid rounded-xl object-cover shadow-card transition-transform duration-300 hover:scale-[1.02]"
             />
           ))}
         </div>

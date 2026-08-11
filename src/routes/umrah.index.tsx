@@ -4,6 +4,7 @@ import { PackageCard } from "@/components/PackageCard";
 import { CityTabs } from "@/components/CityTabs";
 import { getPackages } from "@/data/packages";
 import { IMG } from "@/data/images";
+import { FadeIn } from "@/components/FadeIn";
 
 export const Route = createFileRoute("/umrah/")({
   head: () => ({
@@ -48,8 +49,10 @@ function UmrahIndex() {
           <CityTabs base="umrah" />
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {packages.map((p) => (
-            <PackageCard key={p.id} pkg={p} />
+          {packages.map((p, i) => (
+            <FadeIn key={p.id} delay={i * 100}>
+              <PackageCard pkg={p} />
+            </FadeIn>
           ))}
         </div>
       </Section>

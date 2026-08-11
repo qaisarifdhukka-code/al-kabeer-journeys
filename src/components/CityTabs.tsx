@@ -12,16 +12,18 @@ export function CityTabs({
   active?: TabKey;
   onChange?: (key: TabKey) => void;
 }) {
+  const activeClass =
+    "bg-background text-primary border-2 border-gold shadow-md shadow-gold/20 font-extrabold";
+  const inactiveClass =
+    "bg-surface text-foreground border-2 border-transparent hover:border-gold/50 hover:bg-background";
+  const baseClass = "rounded-full px-6 py-2.5 text-xs uppercase tracking-widest transition-all";
+
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2">
+    <div className="flex flex-wrap items-center justify-center gap-3">
       {base ? (
         <Link
           to={`/${base}`}
-          className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
-            !active || active === "ALL"
-              ? "bg-primary text-primary-foreground shadow-md"
-              : "bg-surface text-foreground hover:bg-primary/10"
-          }`}
+          className={`${baseClass} ${!active || active === "ALL" ? activeClass : inactiveClass}`}
         >
           All Cities
         </Link>
@@ -29,11 +31,7 @@ export function CityTabs({
         <button
           type="button"
           onClick={() => onChange?.("ALL")}
-          className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
-            active === "ALL"
-              ? "bg-primary text-primary-foreground shadow-md"
-              : "bg-surface text-foreground hover:bg-primary/10"
-          }`}
+          className={`${baseClass} ${active === "ALL" ? activeClass : inactiveClass}`}
         >
           All Cities
         </button>
@@ -45,11 +43,7 @@ export function CityTabs({
             key={city}
             to={`/${base}/$city`}
             params={{ city }}
-            className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
-              active === city
-                ? "bg-primary text-primary-foreground shadow-md"
-                : "bg-surface text-foreground hover:bg-primary/10"
-            }`}
+            className={`${baseClass} ${active === city ? activeClass : inactiveClass}`}
           >
             {CITY_LABELS[city]}
           </Link>
@@ -58,11 +52,7 @@ export function CityTabs({
             key={city}
             type="button"
             onClick={() => onChange?.(city)}
-            className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all ${
-              active === city
-                ? "bg-primary text-primary-foreground shadow-md"
-                : "bg-surface text-foreground hover:bg-primary/10"
-            }`}
+            className={`${baseClass} ${active === city ? activeClass : inactiveClass}`}
           >
             {CITY_LABELS[city]}
           </button>
