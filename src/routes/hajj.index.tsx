@@ -5,6 +5,13 @@ import { CityTabs } from "@/components/CityTabs";
 import { getPackages } from "@/data/packages";
 import { IMG } from "@/data/images";
 import { FadeIn } from "@/components/FadeIn";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/hajj/")({
   head: () => ({
@@ -48,13 +55,29 @@ function HajjIndex() {
         <div className="mt-9">
           <CityTabs base="hajj" />
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {packages.map((p, i) => (
-            <FadeIn key={p.id} delay={i * 100}>
-              <PackageCard pkg={p} />
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn>
+          <div className="mt-10 px-4 sm:px-10 relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 sm:-ml-6">
+                {packages.map((p) => (
+                  <CarouselItem key={p.id} className="pl-4 sm:pl-6 md:basis-1/2 lg:basis-1/3">
+                    <div className="h-full pb-4">
+                      <PackageCard pkg={p} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex -left-4 sm:-left-8" />
+              <CarouselNext className="hidden sm:flex -right-4 sm:-right-8" />
+            </Carousel>
+          </div>
+        </FadeIn>
       </Section>
     </>
   );

@@ -8,6 +8,15 @@ import { IMG, GALLERY_IMAGES } from "@/data/images";
 import { getPackages } from "@/data/packages";
 import { BRANCHES, SITE, whatsappLink } from "@/data/site";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { FadeIn } from "@/components/FadeIn";
+
 export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
@@ -158,11 +167,29 @@ function HomePage() {
         <div className="mt-9">
           <CityTabs active={hajjFilter} onChange={setHajjFilter} />
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {hajj.map((p) => (
-            <PackageCard key={p.id} pkg={p} />
-          ))}
-        </div>
+        <FadeIn>
+          <div className="mt-10 px-4 sm:px-10 relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 sm:-ml-6">
+                {hajj.map((p) => (
+                  <CarouselItem key={p.id} className="pl-4 sm:pl-6 md:basis-1/2 lg:basis-1/3">
+                    <div className="h-full pb-4">
+                      <PackageCard pkg={p} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex -left-4 sm:-left-8" />
+              <CarouselNext className="hidden sm:flex -right-4 sm:-right-8" />
+            </Carousel>
+          </div>
+        </FadeIn>
         <div className="mt-10 text-center">
           <Link
             to="/hajj"
@@ -183,11 +210,29 @@ function HomePage() {
         <div className="mt-9">
           <CityTabs active={umrahFilter} onChange={setUmrahFilter} />
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {umrah.map((p) => (
-            <PackageCard key={p.id} pkg={p} />
-          ))}
-        </div>
+        <FadeIn>
+          <div className="mt-10 px-4 sm:px-10 relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 sm:-ml-6">
+                {umrah.map((p) => (
+                  <CarouselItem key={p.id} className="pl-4 sm:pl-6 md:basis-1/2 lg:basis-1/3">
+                    <div className="h-full pb-4">
+                      <PackageCard pkg={p} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex -left-4 sm:-left-8" />
+              <CarouselNext className="hidden sm:flex -right-4 sm:-right-8" />
+            </Carousel>
+          </div>
+        </FadeIn>
         <div className="mt-10 text-center">
           <Link
             to="/umrah"
