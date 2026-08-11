@@ -99,21 +99,6 @@ export function SiteHeader() {
                 >
                   {item.label}
                 </Link>
-                {(item.to === "/hajj" || item.to === "/umrah") && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-background shadow-xl rounded-xl border border-border py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all translate-y-2 group-hover:translate-y-0">
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 border-8 border-transparent border-b-background" />
-                    {CITY_KEYS.map((city) => (
-                      <Link
-                        key={city}
-                        to={`${item.to}/$city`}
-                        params={{ city }}
-                        className="block px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-surface hover:text-primary transition-colors text-center"
-                      >
-                        {CITY_LABELS[city]}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
           </nav>
