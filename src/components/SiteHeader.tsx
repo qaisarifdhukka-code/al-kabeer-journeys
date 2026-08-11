@@ -36,7 +36,7 @@ export function SiteHeader() {
           {/* Logo (Left) */}
           <Link to="/" className="flex items-center gap-3 xl:gap-4 z-50 shrink-0">
             <img 
-              src="/images/LOGO/Orignal logo.png" 
+              src="/images/LOGO/original-logo.png" 
               alt="AL-KABEER Tours & Travels Logo" 
               className="h-12 xl:h-16 w-auto object-contain"
             />
