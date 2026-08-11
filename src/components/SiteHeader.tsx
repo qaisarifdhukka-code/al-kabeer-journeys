@@ -142,35 +142,7 @@ export function SiteHeader() {
             </Link>
           ))}
           
-          <div className="mt-4 pt-4 border-t border-border">
-            <p className="px-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
-              Select City
-            </p>
-            {CITY_KEYS.map((key) => (
-              <div key={key} className="px-4 mb-4 last:mb-0">
-                <span className="block text-xs font-bold text-primary">{CITY_LABELS[key]}</span>
-                <div className="mt-2 flex gap-2">
-                  <Link
-                    to="/hajj/$city"
-                    params={{ city: key }}
-                    onClick={() => setOpen(false)}
-                    className="flex-1 rounded-xl border border-border px-3 py-2 text-center text-xs font-semibold hover:bg-surface transition-colors"
-                  >
-                    Hajj
-                  </Link>
-                  <Link
-                    to="/umrah/$city"
-                    params={{ city: key }}
-                    onClick={() => setOpen(false)}
-                    className="flex-1 rounded-xl border border-border px-3 py-2 text-center text-xs font-semibold hover:bg-surface transition-colors"
-                  >
-                    Umrah
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
+          <div className="mt-4 pt-4 border-t border-border" />
           <div className="px-4 mt-6 flex flex-col gap-3">
             <a href={`tel:${SITE.primaryPhone}`} className="flex items-center justify-center gap-2 text-primary font-bold hover:text-gold transition-colors py-2 border border-border rounded-full">
               <Phone className="size-4" aria-hidden="true" /> {SITE.primaryPhone}
