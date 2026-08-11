@@ -15,7 +15,7 @@ export function CityTabs({
   const activeClass =
     "bg-background text-primary border-2 border-gold shadow-md shadow-gold/20 font-extrabold";
   const inactiveClass =
-    "bg-surface text-foreground border-2 border-transparent hover:border-gold/50 hover:bg-background";
+    "bg-background text-muted-foreground border-2 border-border/50 hover:border-gold/50 hover:text-foreground hover:bg-background";
   const baseClass = "rounded-full px-6 py-2.5 text-xs uppercase tracking-widest transition-all";
 
   return (
