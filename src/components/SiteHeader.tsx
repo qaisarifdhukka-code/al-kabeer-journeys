@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Phone, Mail, MapPin, X, ChevronDown } from "lucide-react";
-import { BRANCHES, CITY_KEYS, CITY_LABELS, SITE, whatsappLink } from "@/data/site";
+import { Menu, Phone, Mail, MapPin, X } from "lucide-react";
+import { BRANCHES, SITE, whatsappLink } from "@/data/site";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -63,8 +63,6 @@ export function SiteHeader() {
                 <Mail className="size-3.5" aria-hidden="true" /> {SITE.email}
               </a>
             </div>
-            <div className="h-10 w-px bg-border" />
-            <CityMenu />
             <a
               href={whatsappLink("Assalamu alaikum, I would like to enquire about your Hajj and Umrah packages.")}
               target="_blank"
@@ -158,41 +156,5 @@ export function SiteHeader() {
       </div>
     </header>
     </>
-  );
-}
-
-function CityMenu() {
-  const [open, setOpen] = useState(false);
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 px-4 py-2 text-[13px] font-bold uppercase tracking-widest text-primary rounded-full hover:bg-primary/10 transition-all"
-      >
-        Cities <ChevronDown className="size-4" aria-hidden="true" />
-      </button>
-      {open && (
-        <div className="absolute right-0 top-full z-50 w-64 rounded-2xl border border-border bg-background p-3 shadow-xl mt-4">
-          {CITY_KEYS.map((city) => (
-            <div key={city} className="rounded-xl px-3 py-2.5 hover:bg-surface transition-colors">
-              <p className="font-heading text-sm font-bold text-foreground">{CITY_LABELS[city]}</p>
-              <div className="mt-1 flex gap-3 text-xs">
-                <Link to="/hajj" className="text-primary font-semibold hover:underline">
-                  Hajj
-                </Link>
-                <Link to="/umrah" className="text-primary font-semibold hover:underline">
-                  Umrah
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
   );
 }
