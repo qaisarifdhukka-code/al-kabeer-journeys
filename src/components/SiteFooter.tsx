@@ -8,7 +8,8 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <span className="grid size-11 place-items-center rounded-sm bg-primary-foreground font-heading text-xl font-extrabold text-primary">
+            {/* Rounded-xl logo box to match header */}
+            <span className="grid size-11 place-items-center rounded-xl bg-primary-foreground font-heading text-xl font-extrabold text-primary">
               K
             </span>
             <span className="leading-tight">
@@ -19,14 +20,33 @@ export function SiteFooter() {
             </span>
           </div>
           <p className="mt-4 text-sm leading-relaxed opacity-85">{SITE.description}</p>
+          {/* Rounded-full social icon buttons */}
           <div className="mt-5 flex gap-3">
-            <a href={SITE.social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="grid size-9 place-items-center rounded-sm border border-primary-foreground/30 hover:bg-primary-foreground/10">
+            <a
+              href={SITE.social.facebook}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+              className="grid size-9 place-items-center rounded-full border border-primary-foreground/30 transition-all hover:bg-primary-foreground/15 hover:border-primary-foreground/60"
+            >
               <Facebook className="size-4" />
             </a>
-            <a href={SITE.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid size-9 place-items-center rounded-sm border border-primary-foreground/30 hover:bg-primary-foreground/10">
+            <a
+              href={SITE.social.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="grid size-9 place-items-center rounded-full border border-primary-foreground/30 transition-all hover:bg-primary-foreground/15 hover:border-primary-foreground/60"
+            >
               <Instagram className="size-4" />
             </a>
-            <a href={SITE.social.youtube} target="_blank" rel="noreferrer" aria-label="YouTube" className="grid size-9 place-items-center rounded-sm border border-primary-foreground/30 hover:bg-primary-foreground/10">
+            <a
+              href={SITE.social.youtube}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+              className="grid size-9 place-items-center rounded-full border border-primary-foreground/30 transition-all hover:bg-primary-foreground/15 hover:border-primary-foreground/60"
+            >
               <Youtube className="size-4" />
             </a>
           </div>
@@ -47,7 +67,7 @@ export function SiteFooter() {
               { to: "/contact", label: "Contact Us" },
             ].map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="opacity-85 hover:text-gold hover:opacity-100">
+                <Link to={l.to} className="opacity-85 transition-all hover:text-gold hover:opacity-100 hover:pl-1">
                   {l.label}
                 </Link>
               </li>
@@ -64,10 +84,10 @@ export function SiteFooter() {
               <li key={b.key} className="space-y-1">
                 <p className="font-semibold">{b.city}</p>
                 <div className="flex gap-3 text-xs opacity-85">
-                  <Link to="/hajj/$city" params={{ city: b.key }} className="hover:text-gold">
+                  <Link to="/hajj/$city" params={{ city: b.key }} className="hover:text-gold transition-colors">
                     Hajj
                   </Link>
-                  <Link to="/umrah/$city" params={{ city: b.key }} className="hover:text-gold">
+                  <Link to="/umrah/$city" params={{ city: b.key }} className="hover:text-gold transition-colors">
                     Umrah
                   </Link>
                 </div>
@@ -87,13 +107,13 @@ export function SiteFooter() {
             </li>
             <li className="flex gap-2.5">
               <Phone className="mt-0.5 size-4 shrink-0 text-gold" />
-              <a href={`tel:${SITE.primaryPhone}`} className="hover:text-gold">
+              <a href={`tel:${SITE.primaryPhone}`} className="hover:text-gold transition-colors">
                 {SITE.primaryPhone}
               </a>
             </li>
             <li className="flex gap-2.5">
               <Mail className="mt-0.5 size-4 shrink-0 text-gold" />
-              <a href={`mailto:${SITE.email}`} className="hover:text-gold">
+              <a href={`mailto:${SITE.email}`} className="hover:text-gold transition-colors">
                 {SITE.email}
               </a>
             </li>

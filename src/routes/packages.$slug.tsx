@@ -57,14 +57,15 @@ function PackageDetail() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
           <div>
-            <div className="flex flex-wrap gap-3 border-b border-border pb-6 text-xs font-semibold uppercase tracking-wider">
-              <span className="flex items-center gap-1.5 bg-accent px-3 py-2 text-accent-foreground">
+            {/* Pill stat badges */}
+            <div className="flex flex-wrap gap-3 border-b border-border pb-6">
+              <span className="flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
                 <CalendarDays className="size-3.5" aria-hidden="true" /> {pkg.days} days
               </span>
-              <span className="flex items-center gap-1.5 bg-accent px-3 py-2 text-accent-foreground">
+              <span className="flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
                 <Plane className="size-3.5" aria-hidden="true" /> {pkg.departure}
               </span>
-              <span className="flex items-center gap-1.5 bg-accent px-3 py-2 text-accent-foreground">
+              <span className="flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
                 <Utensils className="size-3.5" aria-hidden="true" /> {pkg.meals}
               </span>
             </div>
@@ -81,15 +82,13 @@ function PackageDetail() {
               ))}
             </ul>
 
-            <h2 className="mt-10 font-heading text-xl font-extrabold text-foreground">
-              Hotels
-            </h2>
+            <h2 className="mt-10 font-heading text-xl font-extrabold text-foreground">Hotels</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               {[
                 { city: "Makkah", hotel: pkg.hotelMakkah },
                 { city: "Madinah", hotel: pkg.hotelMadinah },
               ].map(({ city, hotel }) => (
-                <div key={city} className="border border-border bg-card p-5">
+                <div key={city} className="rounded-xl bg-card p-5 shadow-card">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-gold">{city}</p>
                   <p className="mt-1.5 font-heading text-base font-bold text-foreground">
                     {hotel.name}
@@ -107,18 +106,27 @@ function PackageDetail() {
             <h2 className="mt-10 font-heading text-xl font-extrabold text-foreground">Itinerary</h2>
             <ol className="mt-4 space-y-4">
               {pkg.itinerary.map((step) => (
-                <li key={step.day} className="border-l-2 border-primary pl-5">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-primary">
-                    {step.day}
-                  </p>
-                  <p className="mt-1 font-heading text-sm font-bold text-foreground">{step.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
+                <li key={step.day} className="flex gap-4">
+                  {/* Timeline dot */}
+                  <div className="flex flex-col items-center">
+                    <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/15 ring-2 ring-primary/30">
+                      <div className="size-2 rounded-full bg-primary" />
+                    </div>
+                    <div className="mt-1 w-0.5 flex-1 bg-primary/15" />
+                  </div>
+                  <div className="pb-4">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                      {step.day}
+                    </p>
+                    <p className="mt-1 font-heading text-sm font-bold text-foreground">{step.title}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
+                  </div>
                 </li>
               ))}
             </ol>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="border border-border bg-card p-5">
+              <div className="rounded-xl bg-card p-5 shadow-card">
                 <h3 className="font-heading text-base font-bold text-foreground">Inclusions</h3>
                 <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                   {INCLUSIONS.map((i) => (
@@ -129,7 +137,7 @@ function PackageDetail() {
                   ))}
                 </ul>
               </div>
-              <div className="border border-border bg-card p-5">
+              <div className="rounded-xl bg-card p-5 shadow-card">
                 <h3 className="font-heading text-base font-bold text-foreground">Exclusions</h3>
                 <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                   {EXCLUSIONS.map((i) => (
@@ -145,7 +153,7 @@ function PackageDetail() {
 
           {/* Booking sidebar */}
           <aside className="h-fit lg:sticky lg:top-40">
-            <div className="border border-border bg-surface p-6">
+            <div className="rounded-2xl bg-surface p-6 shadow-card">
               <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                 Starting from
               </p>
@@ -176,17 +184,18 @@ function PackageDetail() {
                 {pkg.seatsLeft} seats available · Booked through our {branch.label}
               </p>
 
+              {/* Pill action buttons */}
               <a
                 href={whatsappLink(message, branch.whatsapp)}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 block rounded-sm bg-primary px-5 py-3.5 text-center text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary-hover"
+                className="mt-5 block rounded-full bg-primary px-5 py-3.5 text-center text-xs font-bold uppercase tracking-wider text-primary-foreground transition-all hover:bg-primary-hover hover:shadow-md"
               >
                 Enquire on WhatsApp
               </a>
               <a
                 href={`tel:${branch.phones[0]}`}
-                className="mt-3 block rounded-sm border border-primary px-5 py-3.5 text-center text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground"
+                className="mt-3 block rounded-full border border-primary px-5 py-3.5 text-center text-xs font-bold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground"
               >
                 Call {branch.phones[0]}
               </a>

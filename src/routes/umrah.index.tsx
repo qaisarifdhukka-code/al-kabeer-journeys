@@ -12,13 +12,13 @@ export const Route = createFileRoute("/umrah/")({
       {
         name: "description",
         content:
-          "Express, deluxe and extended Umrah packages from AL-KABEER with hotels near the Haram, visa processing and guided Ziyarat in Makkah and Madinah.",
+          "Find affordable Umrah packages from Mumbai, Kolkata and Gujarat. AL-KABEER Tours & Travels provides complete Umrah services with hotels near Haram.",
       },
       { property: "og:title", content: "Umrah Packages | AL-KABEER Tours & Travels" },
       {
         property: "og:description",
         content:
-          "Umrah packages for every budget with departures from Mumbai, Kolkata and Ahmedabad.",
+          "Umrah round the year with express, deluxe and extended itineraries. Complete arrangements for flights, hotels, and transport.",
       },
       { property: "og:image", content: IMG.umrah1 },
       { name: "twitter:image", content: IMG.umrah1 },
@@ -42,7 +42,7 @@ function UmrahIndex() {
         <SectionHeading
           eyebrow="Choose your departure city"
           title="All Umrah packages"
-          intro="Select your city to see the exact fares, hotel categories and available dates for your departure."
+          intro="Packages differ by city because of flight routes and local arrangements. Select your city to see the exact rates and seat availability."
         />
         <div className="mt-9">
           <CityTabs base="umrah" />

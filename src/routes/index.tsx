@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, HeartHandshake, ShieldCheck, Clock, FileText, Star } from "lucide-react";
 import { Section, SectionHeading } from "@/components/Section";
 import { PackageCard } from "@/components/PackageCard";
-import { CityTabs } from "@/components/CityTabs";
+import { CityTabs, type TabKey } from "@/components/CityTabs";
 import { IMG, GALLERY_IMAGES } from "@/data/images";
 import { getPackages } from "@/data/packages";
 import { BRANCHES, SITE, whatsappLink } from "@/data/site";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
       { title: "AL-KABEER Tours & Travels | Hajj & Umrah from Mumbai, Kolkata, Gujarat" },
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/")({
     ],
   }),
   component: HomePage,
-});
+}));
 
 const DOCUMENTS = [
   "Original passport valid for at least 8 months",
@@ -46,76 +47,61 @@ const WHY = [
 ];
 
 function HomePage() {
-  const hajj = getPackages("hajj").slice(0, 3);
-  const umrah = getPackages("umrah").slice(0, 3);
+  const [hajjFilter, setHajjFilter] = useState<TabKey>("ALL");
+  const [umrahFilter, setUmrahFilter] = useState<TabKey>("ALL");
+
+  const allHajj = getPackages("hajj");
+  const hajj = (hajjFilter === "ALL" ? allHajj : allHajj.filter((p) => p.city === hajjFilter)).slice(0, 3);
+
+  const allUmrah = getPackages("umrah");
+  const umrah = (umrahFilter === "ALL" ? allUmrah : allUmrah.filter((p) => p.city === umrahFilter)).slice(0, 3);
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative">
-        <img
-          src={IMG.hero}
-          alt="Pilgrims gathered in the courtyard of Masjid al-Haram in Makkah"
-          className="h-[420px] w-full object-cover sm:h-[520px]"
-        />
-        <div className="absolute inset-0 bg-foreground/55" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="mx-auto w-full max-w-7xl px-4">
-            <div className="max-w-2xl text-primary-foreground">
-              <p className="font-heading text-xs font-bold uppercase tracking-[0.25em] text-gold">
-                {SITE.tagline}
-              </p>
-              <h1 className="mt-4 font-heading text-3xl font-extrabold leading-tight sm:text-5xl">
-                Hajj &amp; Umrah journeys arranged with care
-              </h1>
-              <p className="mt-5 max-w-xl text-sm leading-relaxed opacity-90 sm:text-base">
-                AL-KABEER Tours &amp; Travels serves pilgrims from Mumbai, Kolkata and Gujarat with
-                dedicated departures, hotels close to the Haram and a team that stays with you from
-                enquiry to return.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to="/hajj"
-                  className="rounded-sm bg-gold px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-foreground transition-colors hover:bg-gold/85"
-                >
-                  Hajj packages
-                </Link>
-                <Link
-                  to="/umrah"
-                  className="rounded-sm border border-primary-foreground/70 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-                >
-                  Umrah packages
-                </Link>
-              </div>
-            </div>
+      {/* ── Hero (Classic Full-Bleed Style) ── */}
+      <section className="relative overflow-hidden py-12 sm:py-16 lg:py-20 flex items-center justify-center">
+        {/* Full bleed background image */}
+        <div className="absolute inset-0">
+          <img
+            src={IMG.hajj2}
+            alt="Pilgrims performing Tawaf around the Kaaba"
+            className="w-full h-full object-cover object-center brightness-[1.15] contrast-[1.1]"
+          />
+          {/* Soft overlay just enough for text readability, avoiding dullness */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 mix-blend-multiply" />
+        </div>
+        
+        <div className="mx-auto max-w-7xl px-4 relative z-10 flex flex-col items-center text-center">
+          <p className="font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-gold drop-shadow-md">
+            {SITE.tagline}
+          </p>
+          <h1 className="mt-4 font-display text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl text-white drop-shadow-xl">
+            Hajj &amp; Umrah<br />
+            <span className="text-gold italic drop-shadow-xl">Journeys with Care</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-white/95 sm:text-base lg:text-lg drop-shadow-md font-medium">
+            {SITE.name} serves pilgrims from Mumbai, Kolkata and Gujarat with dedicated departures, hotels close to the Haram and a team that stays with you from enquiry to return.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              to="/hajj"
+              className="rounded-full bg-gold px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-lg transition-all hover:bg-gold/90 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Hajj packages
+            </Link>
+            <Link
+              to="/umrah"
+              className="rounded-full border-2 border-white/80 bg-black/20 px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-sm shadow-lg transition-all hover:bg-white/10 hover:border-white hover:-translate-y-0.5"
+            >
+              Umrah packages
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* City strip */}
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto grid max-w-7xl gap-px px-4 py-8 sm:grid-cols-3">
-          {BRANCHES.map((b) => (
-            <div key={b.key} className="px-2 py-3 text-center sm:border-r sm:border-border sm:last:border-0">
-              <p className="font-heading text-sm font-extrabold uppercase tracking-wider text-primary">
-                {b.city}
-              </p>
-              <p className="mt-1.5 text-xs text-muted-foreground">{b.phones[0]}</p>
-              <div className="mt-2 flex justify-center gap-3 text-xs font-semibold">
-                <Link to="/hajj/$city" params={{ city: b.key }} className="text-foreground hover:text-primary">
-                  Hajj
-                </Link>
-                <span className="text-border">|</span>
-                <Link to="/umrah/$city" params={{ city: b.key }} className="text-foreground hover:text-primary">
-                  Umrah
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Welcome */}
+
+      {/* ── Welcome / About ── */}
       <Section>
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="relative">
@@ -123,9 +109,9 @@ function HomePage() {
               src={IMG.madinah}
               alt="Masjid an-Nabawi in Madinah illuminated in the evening"
               loading="lazy"
-              className="h-80 w-full object-cover sm:h-[420px]"
+              className="h-80 w-full rounded-2xl object-cover shadow-card sm:h-[420px]"
             />
-            <div className="absolute -bottom-6 -right-2 hidden bg-primary px-6 py-5 text-primary-foreground sm:block">
+            <div className="absolute -bottom-6 -right-2 hidden rounded-xl bg-primary px-6 py-5 text-primary-foreground shadow-lg sm:block">
               <p className="font-heading text-3xl font-extrabold">30+</p>
               <p className="text-xs uppercase tracking-widest opacity-85">Years of service</p>
             </div>
@@ -154,7 +140,7 @@ function HomePage() {
             </ul>
             <Link
               to="/about"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:gap-3"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary transition-all hover:bg-primary hover:text-primary-foreground"
             >
               More about us <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
@@ -162,7 +148,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* Hajj packages */}
+      {/* ── Hajj packages ── */}
       <Section tone="surface">
         <SectionHeading
           eyebrow="Hajj 2027"
@@ -170,7 +156,7 @@ function HomePage() {
           intro="Shifting and non-shifting Hajj categories with departures from Mumbai, Kolkata and Ahmedabad. Rates shown are per person on the lowest sharing category."
         />
         <div className="mt-9">
-          <CityTabs base="hajj" />
+          <CityTabs active={hajjFilter} onChange={setHajjFilter} />
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {hajj.map((p) => (
@@ -180,14 +166,14 @@ function HomePage() {
         <div className="mt-10 text-center">
           <Link
             to="/hajj"
-            className="inline-flex items-center gap-2 rounded-sm border border-primary px-6 py-3 text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground"
+            className="inline-flex items-center gap-2 rounded-full border border-primary px-6 py-3 text-xs font-bold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground"
           >
             View all Hajj packages <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </div>
       </Section>
 
-      {/* Umrah packages */}
+      {/* ── Umrah packages ── */}
       <Section>
         <SectionHeading
           eyebrow="Umrah 2026 – 27"
@@ -195,7 +181,7 @@ function HomePage() {
           intro="Express, deluxe and extended Umrah itineraries with five-star and economy hotel options, guided Ziyarat and full visa assistance."
         />
         <div className="mt-9">
-          <CityTabs base="umrah" />
+          <CityTabs active={umrahFilter} onChange={setUmrahFilter} />
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {umrah.map((p) => (
@@ -205,28 +191,31 @@ function HomePage() {
         <div className="mt-10 text-center">
           <Link
             to="/umrah"
-            className="inline-flex items-center gap-2 rounded-sm border border-primary px-6 py-3 text-xs font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground"
+            className="inline-flex items-center gap-2 rounded-full border border-primary px-6 py-3 text-xs font-bold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground"
           >
             View all Umrah packages <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </div>
       </Section>
 
-      {/* Why us */}
+      {/* ── Why us — icon circle backgrounds ── */}
       <Section tone="surface">
         <SectionHeading eyebrow="Why AL-KABEER" title="Care that goes beyond the booking" />
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {WHY.map((item) => (
-            <div key={item.title} className="border border-border bg-card p-6">
-              <item.icon className="size-7 text-primary" aria-hidden="true" />
-              <h3 className="mt-4 font-heading text-base font-bold text-foreground">{item.title}</h3>
+            <div key={item.title} className="rounded-2xl bg-card p-6 shadow-card card-lift text-center">
+              {/* Icon with circle background */}
+              <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10">
+                <item.icon className="size-7 text-primary" aria-hidden="true" />
+              </div>
+              <h3 className="font-heading text-base font-bold text-foreground">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Documents */}
+      {/* ── Documents ── */}
       <Section>
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
@@ -250,9 +239,9 @@ function HomePage() {
               src={IMG.banner}
               alt="AL-KABEER pilgrims boarding a coach for Ziyarat"
               loading="lazy"
-              className="h-64 w-full object-cover sm:h-80"
+              className="h-64 w-full rounded-2xl object-cover shadow-card sm:h-80"
             />
-            <div className="mt-6 border border-border bg-surface p-6">
+            <div className="mt-6 rounded-2xl border border-border bg-surface p-6 shadow-card">
               <h3 className="font-heading text-base font-bold text-foreground">
                 Not sure which package suits you?
               </h3>
@@ -264,7 +253,7 @@ function HomePage() {
                 href={whatsappLink("Assalamu alaikum, please help me choose a suitable Hajj or Umrah package.")}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-5 inline-block rounded-sm bg-primary px-5 py-3 text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary-hover"
+                className="mt-5 inline-block rounded-full bg-primary px-5 py-3 text-xs font-bold uppercase tracking-wider text-primary-foreground transition-all hover:bg-primary-hover hover:shadow-md"
               >
                 Talk to our team
               </a>
@@ -273,7 +262,7 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* Gallery */}
+      {/* ── Gallery ── */}
       <Section tone="surface">
         <SectionHeading
           eyebrow="Memories"
@@ -287,21 +276,21 @@ function HomePage() {
               src={img.src}
               alt={img.alt}
               loading="lazy"
-              className="h-40 w-full object-cover sm:h-48"
+              className="h-40 w-full rounded-xl object-cover shadow-card transition-transform duration-300 hover:scale-[1.03] sm:h-48"
             />
           ))}
         </div>
         <div className="mt-10 text-center">
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-primary hover:gap-3"
+            className="inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary transition-all hover:bg-primary hover:text-primary-foreground"
           >
             View full gallery <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </div>
       </Section>
 
-      {/* Testimonials */}
+      {/* ── Testimonials ── */}
       <Section>
         <SectionHeading eyebrow="Testimonials" title="What our pilgrims say" />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -310,27 +299,41 @@ function HomePage() {
             { name: "Fatima Sheikh", city: "Kolkata", text: "This was my mother's first Umrah. The team helped her with a wheelchair at every step. Very caring staff." },
             { name: "Yusuf Patel", city: "Ahmedabad", text: "Booking was simple and the hotel in Madinah was right beside the Haram. Costs were exactly as quoted." },
           ].map((t) => (
-            <figure key={t.name} className="border border-border bg-card p-6">
+            <figure key={t.name} className="relative rounded-2xl bg-card p-6 shadow-card card-lift">
+              {/* Decorative large quote mark */}
+              <span className="absolute right-5 top-4 font-heading text-6xl font-extrabold leading-none text-primary/10 select-none">
+                "
+              </span>
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="size-4 fill-gold text-gold" aria-hidden="true" />
                 ))}
               </div>
               <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                “{t.text}”
+                "{t.text}"
               </blockquote>
-              <figcaption className="mt-5 border-t border-border pt-4">
-                <p className="font-heading text-sm font-bold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.city}</p>
+              <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
+                {/* Avatar initial circle */}
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 font-heading text-sm font-extrabold text-primary">
+                  {t.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-heading text-sm font-bold text-foreground">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.city}</p>
+                </div>
               </figcaption>
             </figure>
           ))}
         </div>
       </Section>
 
-      {/* CTA band */}
-      <section className="bg-primary py-14">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 text-center md:flex-row md:text-left">
+      {/* ── CTA band — gradient instead of flat green ── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary-hover py-14">
+        {/* Subtle pattern layer */}
+        <div className="pointer-events-none absolute inset-0 opacity-10"
+          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+        />
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 text-center md:flex-row md:text-left">
           <div className="text-primary-foreground">
             <h2 className="font-heading text-2xl font-extrabold">Ready to begin your journey?</h2>
             <p className="mt-2 text-sm opacity-85">
@@ -340,13 +343,13 @@ function HomePage() {
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               to="/contact"
-              className="rounded-sm bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-foreground hover:bg-gold/85"
+              className="rounded-full bg-gold px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-foreground transition-all hover:bg-gold/85 hover:shadow-lg"
             >
               Contact us
             </Link>
             <a
               href={`tel:${SITE.primaryPhone}`}
-              className="rounded-sm border border-primary-foreground/60 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary-foreground/10"
+              className="rounded-full border border-primary-foreground/60 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-primary-foreground transition-all hover:bg-primary-foreground/15"
             >
               Call {SITE.primaryPhone}
             </a>

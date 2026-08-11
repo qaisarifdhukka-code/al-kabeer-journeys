@@ -50,9 +50,11 @@ function ServicesPage() {
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
-            <div key={s.title} className="border border-border bg-card p-7">
-              <s.icon className="size-7 text-primary" aria-hidden="true" />
-              <h2 className="mt-4 font-heading text-base font-bold text-foreground">{s.title}</h2>
+            <div key={s.title} className="rounded-2xl bg-card p-7 shadow-card card-lift text-center">
+              <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10">
+                <s.icon className="size-7 text-primary" aria-hidden="true" />
+              </div>
+              <h2 className="font-heading text-base font-bold text-foreground">{s.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
             </div>
           ))}

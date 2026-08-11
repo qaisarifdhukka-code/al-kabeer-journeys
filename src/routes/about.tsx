@@ -58,7 +58,7 @@ function AboutPage() {
             src={IMG.hajj2}
             alt="Pilgrims performing Tawaf around the Kaaba"
             loading="lazy"
-            className="h-80 w-full object-cover sm:h-[440px]"
+            className="h-80 w-full rounded-2xl object-cover shadow-card sm:h-[440px]"
           />
         </div>
       </Section>
@@ -70,9 +70,12 @@ function AboutPage() {
             { icon: Eye, title: "Our vision", text: "To be the most reliable Hajj and Umrah operator in western and eastern India, known for service rather than promises." },
             { icon: BadgeCheck, title: "Our values", text: "Honest pricing, respect for elders and families, punctual arrangements and accountability at every step." },
           ].map((item) => (
-            <div key={item.title} className="border border-border bg-card p-7">
-              <item.icon className="size-7 text-primary" aria-hidden="true" />
-              <h2 className="mt-4 font-heading text-lg font-bold text-foreground">{item.title}</h2>
+            <div key={item.title} className="rounded-2xl bg-card p-7 shadow-card card-lift text-center">
+              {/* Icon circle background */}
+              <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10">
+                <item.icon className="size-7 text-primary" aria-hidden="true" />
+              </div>
+              <h2 className="font-heading text-lg font-bold text-foreground">{item.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
             </div>
           ))}
@@ -87,7 +90,7 @@ function AboutPage() {
         />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {BRANCHES.map((b) => (
-            <div key={b.key} className="border border-border bg-card p-6">
+            <div key={b.key} className="rounded-2xl bg-card p-6 shadow-card card-lift">
               <h3 className="font-heading text-base font-bold text-primary">{b.label}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {b.addressLines.join(", ")}

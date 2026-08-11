@@ -46,11 +46,16 @@ function FaqPage() {
       />
       <Section>
         <SectionHeading eyebrow="Help centre" title="Questions pilgrims ask us most" />
-        <div className="mx-auto mt-10 max-w-3xl">
+        {/* FAQ wrapped in a rounded card with shadow */}
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl bg-card p-4 shadow-card sm:p-6">
           <Accordion type="single" collapsible className="w-full">
             {FAQS.map((f, i) => (
-              <AccordionItem key={f.q} value={`item-${i}`}>
-                <AccordionTrigger className="text-left font-heading text-sm font-bold text-foreground">
+              <AccordionItem
+                key={f.q}
+                value={`item-${i}`}
+                className="border-border last:border-0"
+              >
+                <AccordionTrigger className="text-left font-heading text-sm font-bold text-foreground hover:text-primary transition-colors">
                   {f.q}
                 </AccordionTrigger>
                 <AccordionContent className="text-sm leading-relaxed text-muted-foreground">

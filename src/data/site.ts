@@ -19,8 +19,8 @@ export const SITE = {
   description:
     "Government-approved Hajj and Umrah tour operator serving pilgrims from Mumbai, Kolkata and Gujarat since 1994.",
   email: "info@alkabeertours.example",
-  whatsapp: "919876543210",
-  primaryPhone: "+91 98765 43210",
+  whatsapp: "919769816712",
+  primaryPhone: "+91 97698 16712",
   secondaryPhone: "+91 98765 43211",
   social: {
     facebook: "https://facebook.com",
@@ -39,8 +39,8 @@ export const BRANCHES: Branch[] = [
       "Mohammed Ali Road, Bhendi Bazaar",
       "Mumbai, Maharashtra 400003",
     ],
-    phones: ["+91 98765 43210", "+91 22 2345 6789"],
-    whatsapp: "919876543210",
+    phones: ["+91 97698 16712", "+91 22 2345 6789"],
+    whatsapp: "919769816712",
     email: "mumbai@alkabeertours.example",
     hours: "Mon – Sat, 10:00 AM – 8:00 PM",
     mapUrl: "https://maps.google.com/?q=Mohammed+Ali+Road+Mumbai",

@@ -41,7 +41,7 @@ function GalleryPage() {
               src={img.src}
               alt={img.alt}
               loading="lazy"
-              className={`w-full object-cover ${i % 5 === 0 ? "h-72 lg:col-span-2" : "h-56"}`}
+              className={`w-full rounded-xl object-cover shadow-card transition-transform duration-300 hover:scale-[1.03] ${i % 5 === 0 ? "h-72 lg:col-span-2" : "h-56"}`}
             />
           ))}
         </div>

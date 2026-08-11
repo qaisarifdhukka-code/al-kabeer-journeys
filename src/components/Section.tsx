@@ -19,11 +19,12 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-3 font-heading text-2xl font-extrabold text-foreground sm:text-3xl">
+      <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
         {title}
       </h2>
+      {/* Gradient accent bar — thicker and rounded, with green→gold gradient */}
       <span
-        className={`mt-4 block h-0.5 w-16 bg-primary ${align === "center" ? "mx-auto" : ""}`}
+        className={`mt-4 block h-1 w-16 rounded-full bg-gradient-to-r from-primary to-gold ${align === "center" ? "mx-auto" : ""}`}
       />
       {intro && <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{intro}</p>}
     </div>
@@ -44,17 +45,19 @@ export function PageBanner({
   return (
     <section className="relative">
       <img src={image} alt="" aria-hidden="true" className="h-56 w-full object-cover sm:h-72" />
-      <div className="absolute inset-0 bg-foreground/60" />
+      {/* Atmospheric gradient overlay instead of flat color */}
+      <div className="absolute inset-0 bg-gradient-to-r from-foreground/75 via-foreground/50 to-foreground/30" />
       <div className="absolute inset-0 flex items-center">
         <div className="mx-auto w-full max-w-7xl px-4 text-primary-foreground">
-          <h1 className="font-heading text-3xl font-extrabold sm:text-4xl">{title}</h1>
+          <h1 className="font-display text-3xl font-bold sm:text-4xl drop-shadow-md">{title}</h1>
           {subtitle && <p className="mt-3 max-w-2xl text-sm opacity-90 sm:text-base">{subtitle}</p>}
-          <p className="mt-4 text-xs opacity-80">
-            <Link to="/" className="hover:text-gold">
+          {/* Breadcrumb pill */}
+          <p className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs backdrop-blur-sm">
+            <Link to="/" className="hover:text-gold transition-colors">
               Home
             </Link>
-            <span className="mx-2">/</span>
-            <span className="text-gold">{crumb}</span>
+            <span className="opacity-60">/</span>
+            <span className="text-gold font-semibold">{crumb}</span>
           </p>
         </div>
       </div>

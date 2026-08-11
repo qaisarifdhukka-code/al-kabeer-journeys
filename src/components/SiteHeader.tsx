@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, Phone, Mail, MapPin, X, ChevronDown } from "lucide-react";
 import { BRANCHES, CITY_KEYS, CITY_LABELS, SITE, whatsappLink } from "@/data/site";
@@ -16,120 +16,176 @@ const NAV = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 shadow-sm">
-      {/* utility bar */}
-      <div className="hidden bg-primary text-primary-foreground md:block">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-4 text-xs">
-          <div className="flex items-center gap-6">
-            <a href={`tel:${SITE.primaryPhone}`} className="flex items-center gap-1.5 hover:text-gold">
-              <Phone className="size-3.5" aria-hidden="true" /> {SITE.primaryPhone}
-            </a>
-            <a href={`mailto:${SITE.email}`} className="flex items-center gap-1.5 hover:text-gold">
-              <Mail className="size-3.5" aria-hidden="true" /> {SITE.email}
-            </a>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <MapPin className="size-3.5" aria-hidden="true" />
-            <span>Offices in Mumbai · Kolkata · Ahmedabad</span>
-          </div>
-        </div>
-      </div>
-
-      {/* logo row */}
-      <div className="border-b border-border bg-background">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-          <Link to="/" className="flex items-center gap-3">
-            <span className="grid size-11 place-items-center rounded-sm bg-primary font-heading text-xl font-extrabold text-primary-foreground">
-              K
-            </span>
-            <span className="leading-tight">
-              <span className="block font-heading text-lg font-extrabold tracking-tight text-primary sm:text-xl">
+    <>
+      {/* Invisible placeholder to prevent layout shift and scroll bouncing when header becomes fixed/shrinks */}
+      <div className="w-full invisible h-[64px] sm:h-[72px] lg:h-[124px] xl:h-[142px]" aria-hidden="true" />
+      <header className="fixed top-0 left-0 right-0 z-50 shadow-md">
+      {/* ── ROW 1: BRAND & CONTACT (White Background) ── */}
+      <div className={`bg-white transition-all duration-500 overflow-hidden ${scrolled ? "py-2 lg:py-0 lg:max-h-0 lg:opacity-0" : "py-2 sm:py-3 max-h-[150px] opacity-100"}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4">
+          
+          {/* Logo (Left) */}
+          <Link to="/" className="flex items-center gap-3 xl:gap-4 z-50 shrink-0">
+            <img 
+              src="/images/LOGO/Orignal logo.png" 
+              alt="AL-KABEER Tours & Travels Logo" 
+              className="h-12 xl:h-16 w-auto object-contain"
+            />
+            <div className="flex flex-col justify-center text-primary">
+              <span className="font-display text-[22px] xl:text-[28px] font-extrabold tracking-tight leading-none">
                 AL-KABEER
               </span>
-              <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+              <span className="text-[9px] xl:text-[11px] font-bold uppercase tracking-[0.25em] leading-tight mt-0.5">
                 Tours &amp; Travels
               </span>
-            </span>
+              <span className="text-[8px] xl:text-[10px] font-serif italic mt-0.5 opacity-90">
+                For Quality Touring Since 1994
+              </span>
+            </div>
           </Link>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <div className="border-l border-border pl-4 text-right">
-              <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
-                {SITE.tagline}
-              </p>
-              <p className="font-heading text-sm font-bold text-foreground">
-                Govt. approved Hajj &amp; Umrah operator
-              </p>
+          {/* Contact & CTA (Right Desktop) */}
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+            <div className="flex flex-col items-end">
+              <a href={`tel:${SITE.primaryPhone}`} className="flex items-center gap-2 text-primary font-bold hover:text-gold transition-colors text-sm xl:text-base">
+                <Phone className="size-4" aria-hidden="true" /> {SITE.primaryPhone}
+              </a>
+              <a href={`mailto:${SITE.email}`} className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-xs mt-1">
+                <Mail className="size-3.5" aria-hidden="true" /> {SITE.email}
+              </a>
             </div>
+            <div className="h-10 w-px bg-border" />
+            <CityMenu />
             <a
               href={whatsappLink("Assalamu alaikum, I would like to enquire about your Hajj and Umrah packages.")}
               target="_blank"
               rel="noreferrer"
-              className="rounded-sm bg-gold px-4 py-2.5 text-sm font-bold text-foreground transition-colors hover:bg-gold/85"
+              className="rounded-full bg-gold px-7 py-3.5 text-sm font-bold uppercase tracking-widest text-foreground transition-all hover:bg-gold/85 hover:shadow-lg hover:-translate-y-0.5"
             >
-              Enquire on WhatsApp
+              Enquire
             </a>
           </div>
 
+          {/* Mobile menu toggle */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
-            className="grid size-10 place-items-center rounded-sm border border-border text-foreground lg:hidden"
+            className="grid size-12 place-items-center rounded-xl border border-border text-foreground lg:hidden transition-colors hover:bg-surface z-50"
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
         </div>
       </div>
 
-      {/* nav strip */}
-      <nav className="hidden bg-surface lg:block">
-        <div className="mx-auto flex max-w-7xl items-center gap-1 px-4">
+      {/* ── ROW 2: NAVIGATION (Green Background) ── */}
+      <div className="hidden lg:block bg-primary border-t border-white/10 relative z-40 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+        <div className="mx-auto max-w-7xl px-4">
+          <nav className="flex items-center justify-center gap-8 xl:gap-12">
+            {NAV.map((item) => (
+              <div key={item.to} className="relative group">
+                <Link
+                  to={item.to}
+                  activeProps={{ className: "text-gold border-gold" }}
+                  inactiveProps={{ className: "text-primary-foreground/90 border-transparent hover:text-white hover:border-white/50" }}
+                  className="whitespace-nowrap block text-xs xl:text-[13px] font-bold uppercase tracking-[0.15em] py-4 border-b-2 border-t-2 border-t-transparent transition-all"
+                >
+                  {item.label}
+                </Link>
+                {(item.to === "/hajj" || item.to === "/umrah") && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-background shadow-xl rounded-xl border border-border py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all translate-y-2 group-hover:translate-y-0">
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 border-8 border-transparent border-b-background" />
+                    {CITY_KEYS.map((city) => (
+                      <Link
+                        key={city}
+                        to={`${item.to}/$city`}
+                        params={{ city }}
+                        className="block px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-surface hover:text-primary transition-colors text-center"
+                      >
+                        {CITY_LABELS[city]}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* ── MOBILE DROPDOWN NAVIGATION ── */}
+      <div
+        className={`lg:hidden overflow-hidden bg-background shadow-2xl transition-all duration-300 ease-in-out absolute w-full left-0 ${
+          open ? "max-h-[85vh] border-b border-border opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col px-4 py-4 max-h-[85vh] overflow-y-auto pb-8">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "text-primary border-primary" }}
-              inactiveProps={{ className: "text-foreground border-transparent" }}
-              className="border-b-2 px-3.5 py-3.5 text-sm font-semibold transition-colors hover:text-primary"
+              onClick={() => setOpen(false)}
+              activeProps={{ className: "bg-primary/5 text-primary font-bold border-l-4 border-primary pl-3" }}
+              inactiveProps={{ className: "text-foreground font-medium border-l-4 border-transparent pl-4 hover:bg-surface" }}
+              className="py-3.5 rounded-r-xl transition-all"
             >
               {item.label}
             </Link>
           ))}
-          <CityMenu />
-        </div>
-      </nav>
-
-      {open && (
-        <div className="border-b border-border bg-background lg:hidden">
-          <div className="mx-auto max-w-7xl px-4 py-2">
-            {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ className: "text-primary" }}
-                className="block border-b border-border py-3 text-sm font-semibold last:border-0"
-              >
-                {item.label}
-              </Link>
+          
+          <div className="mt-4 pt-4 border-t border-border">
+            <p className="px-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+              Select City
+            </p>
+            {CITY_KEYS.map((key) => (
+              <div key={key} className="px-4 mb-4 last:mb-0">
+                <span className="block text-xs font-bold text-primary">{CITY_LABELS[key]}</span>
+                <div className="mt-2 flex gap-2">
+                  <Link
+                    to="/hajj/$city"
+                    params={{ city: key }}
+                    onClick={() => setOpen(false)}
+                    className="flex-1 rounded-xl border border-border px-3 py-2 text-center text-xs font-semibold hover:bg-surface transition-colors"
+                  >
+                    Hajj
+                  </Link>
+                  <Link
+                    to="/umrah/$city"
+                    params={{ city: key }}
+                    onClick={() => setOpen(false)}
+                    className="flex-1 rounded-xl border border-border px-3 py-2 text-center text-xs font-semibold hover:bg-surface transition-colors"
+                  >
+                    Umrah
+                  </Link>
+                </div>
+              </div>
             ))}
+          </div>
+
+          <div className="px-4 mt-6 flex flex-col gap-3">
+            <a href={`tel:${SITE.primaryPhone}`} className="flex items-center justify-center gap-2 text-primary font-bold hover:text-gold transition-colors py-2 border border-border rounded-full">
+              <Phone className="size-4" aria-hidden="true" /> {SITE.primaryPhone}
+            </a>
             <a
-              href={whatsappLink("Assalamu alaikum, I would like to enquire about your Hajj and Umrah packages.")}
-              target="_blank"
-              rel="noreferrer"
-              className="my-3 block rounded-sm bg-gold px-4 py-3 text-center text-sm font-bold text-foreground"
+              href={whatsappLink("Assalamu alaikum...")}
+              className="block w-full rounded-full bg-gold px-4 py-3.5 text-center text-sm font-bold uppercase tracking-wider text-foreground hover:bg-gold/85"
             >
               Enquire on WhatsApp
             </a>
           </div>
-        </div>
-      )}
+        </nav>
+      </div>
     </header>
+    </>
   );
 }
 
@@ -137,33 +193,30 @@ function CityMenu() {
   const [open, setOpen] = useState(false);
   return (
     <div
-      className="relative ml-auto"
+      className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 px-3.5 py-3.5 text-sm font-semibold text-primary"
+        className="flex items-center gap-1.5 px-4 py-2 text-[13px] font-bold uppercase tracking-widest text-primary rounded-full hover:bg-primary/10 transition-all"
       >
-        Choose your city <ChevronDown className="size-4" aria-hidden="true" />
+        Cities <ChevronDown className="size-4" aria-hidden="true" />
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 w-64 border border-border bg-background p-2 shadow-lg">
+        <div className="absolute right-0 top-full z-50 w-64 rounded-2xl border border-border bg-background p-3 shadow-xl mt-4">
           {CITY_KEYS.map((city) => (
-            <div key={city} className="px-2 py-1.5">
+            <div key={city} className="rounded-xl px-3 py-2.5 hover:bg-surface transition-colors">
               <p className="font-heading text-sm font-bold text-foreground">{CITY_LABELS[city]}</p>
               <div className="mt-1 flex gap-3 text-xs">
-                <Link to="/hajj/$city" params={{ city }} className="text-primary hover:underline">
-                  Hajj packages
+                <Link to="/hajj" className="text-primary font-semibold hover:underline">
+                  Hajj
                 </Link>
-                <Link to="/umrah/$city" params={{ city }} className="text-primary hover:underline">
-                  Umrah packages
+                <Link to="/umrah" className="text-primary font-semibold hover:underline">
+                  Umrah
                 </Link>
               </div>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {BRANCHES.find((b) => b.key === city)?.phones[0]}
-              </p>
             </div>
           ))}
         </div>

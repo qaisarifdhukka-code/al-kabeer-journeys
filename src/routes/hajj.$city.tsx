@@ -1,40 +1,38 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageBanner, Section, SectionHeading } from "@/components/Section";
 import { PackageCard } from "@/components/PackageCard";
 import { CityTabs } from "@/components/CityTabs";
 import { getPackages } from "@/data/packages";
-import { CITY_LABELS, getBranch, isCityKey, whatsappLink, type CityKey } from "@/data/site";
+import { getBranch, CITY_LABELS, type CityKey } from "@/data/site";
 import { IMG } from "@/data/images";
-import { MapPin, Phone, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/hajj/$city")({
-  loader: ({ params }) => {
-    if (!isCityKey(params.city)) throw notFound();
-    return { city: params.city as CityKey };
-  },
   head: ({ loaderData }) => {
-    if (!loaderData) {
-      return { meta: [{ title: "Hajj packages unavailable | AL-KABEER" }, { name: "robots", content: "noindex" }] };
-    }
-    const label = CITY_LABELS[loaderData.city];
-    const title = `Hajj Packages from ${label} 2027 | AL-KABEER Tours & Travels`;
-    const description = `Hajj 2027 packages with departures from ${label}. Shifting, comprehensive and economy categories with hotels near the Haram and a ${label} group leader.`;
+    if (!loaderData) return {};
+    const { city } = loaderData;
+    const label = CITY_LABELS[city as CityKey];
     return {
       meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
+        { title: `Hajj Packages from ${label} 2027 | AL-KABEER` },
+        {
+          name: "description",
+          content: `Find the best Hajj 2027 packages from ${label}. AL-KABEER Tours & Travels offers dedicated departures from ${label} with complete arrangements.`,
+        },
+        { property: "og:title", content: `Hajj Packages from ${label} | AL-KABEER` },
+        {
+          property: "og:description",
+          content: `Join our exclusive Hajj groups departing from ${label}. Complete arrangements including flights, hotels near Haram, and Mina tents.`,
+        },
         { property: "og:image", content: IMG.hajj1 },
-        { name: "twitter:image", content: IMG.hajj1 },
       ],
     };
   },
+  loader: ({ params }) => ({ city: params.city as CityKey }),
   component: HajjCityPage,
 });
 
 function HajjCityPage() {
-  const { city } = Route.useLoaderData() as { city: CityKey };
+  const { city } = Route.useLoaderData();
   const branch = getBranch(city);
   const packages = getPackages("hajj", city);
   const label = CITY_LABELS[city];
@@ -61,45 +59,6 @@ function HajjCityPage() {
           {packages.map((p) => (
             <PackageCard key={p.id} pkg={p} />
           ))}
-        </div>
-      </Section>
-
-      <Section tone="surface">
-        <div className="grid gap-8 border border-border bg-card p-7 md:grid-cols-3">
-          <div>
-            <h2 className="font-heading text-lg font-bold text-foreground">{branch.label}</h2>
-            <p className="mt-3 flex gap-2.5 text-sm text-muted-foreground">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>{branch.addressLines.join(", ")}</span>
-            </p>
-          </div>
-          <div className="space-y-3 text-sm text-muted-foreground">
-            {branch.phones.map((phone) => (
-              <p key={phone} className="flex gap-2.5">
-                <Phone className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-                <a href={`tel:${phone}`} className="hover:text-primary">
-                  {phone}
-                </a>
-              </p>
-            ))}
-            <p className="flex gap-2.5">
-              <Clock className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-              {branch.hours}
-            </p>
-          </div>
-          <div className="flex items-start md:justify-end">
-            <a
-              href={whatsappLink(
-                `Assalamu alaikum, I would like details of your Hajj 2027 packages from ${label}.`,
-                branch.whatsapp,
-              )}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-sm bg-primary px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-primary-foreground hover:bg-primary-hover"
-            >
-              WhatsApp {label} office
-            </a>
-          </div>
         </div>
       </Section>
     </>
