@@ -123,14 +123,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background">
-        <SiteHeader />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </main>
-        <SiteFooter />
-        <FloatingWhatsApp />
+      <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4 text-center">
+        <h1 className="text-3xl font-bold text-foreground mb-4">Website temporarily unavailable</h1>
+        <p className="text-muted-foreground text-lg">Please contact us for further information.</p>
       </div>
     </QueryClientProvider>
   );
