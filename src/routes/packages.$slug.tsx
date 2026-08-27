@@ -183,7 +183,7 @@ function PackageDetail() {
               </table>
 
               <p className="mt-4 text-xs text-muted-foreground">
-                {pkg.seatsLeft} seats available · Booked through our {branch.label}
+                Booked through our {branch.label}
               </p>
 
               {/* Pill action buttons */}
@@ -202,11 +202,10 @@ function PackageDetail() {
                 Call {branch.phones[0]}
               </a>
               <Link
-                to={pkg.type === "hajj" ? "/hajj/$city" : "/umrah/$city"}
-                params={{ city: pkg.city }}
-                className="mt-4 block text-center text-xs font-semibold text-primary hover:underline"
+                to={`/${pkg.type}`}
+                className="mt-4 block text-center text-xs font-semibold text-primary hover:underline capitalize"
               >
-                All {pkg.type === "hajj" ? "Hajj" : "Umrah"} packages from {label}
+                All {pkg.type} packages from {label}
               </Link>
             </div>
           </aside>

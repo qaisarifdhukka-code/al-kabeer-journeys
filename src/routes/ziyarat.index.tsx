@@ -8,48 +8,48 @@ import { getBranch, CITY_LABELS, type CityKey } from "@/data/site";
 import { IMG } from "@/data/images";
 import { FadeIn } from "@/components/FadeIn";
 
-export const Route = createFileRoute("/umrah/")({
+export const Route = createFileRoute("/ziyarat/")({
   head: () => ({
     meta: [
-      { title: "Umrah Packages from Mumbai, Kolkata & Gujarat | AL-KABEER" },
+      { title: "Ziyarat Packages from Mumbai, Kolkata & Gujarat | AL-KABEER" },
       {
         name: "description",
         content:
-          "Find affordable Umrah packages from Mumbai, Kolkata and Gujarat. AL-KABEER Tours & Travels provides complete Umrah services with hotels near Haram.",
+          "Find affordable Ziyarat packages from Mumbai, Kolkata and Gujarat. AL-KABEER Tours & Travels provides complete Ziyarat services.",
       },
-      { property: "og:title", content: "Umrah Packages | AL-KABEER Tours & Travels" },
+      { property: "og:title", content: "Ziyarat Packages | AL-KABEER Tours & Travels" },
       {
         property: "og:description",
         content:
-          "Umrah round the year with express, deluxe and extended itineraries. Complete arrangements for flights, hotels, and transport.",
+          "Ziyarat round the year with express, deluxe and extended itineraries. Complete arrangements for flights, hotels, and transport.",
       },
-      { property: "og:image", content: IMG.umrah1 },
-      { name: "twitter:image", content: IMG.umrah1 },
+      { property: "og:image", content: IMG.hero },
+      { name: "twitter:image", content: IMG.hero },
     ],
   }),
-  component: UmrahIndex,
+  component: ZiyaratIndex,
 });
 
-function UmrahIndex() {
+function ZiyaratIndex() {
   const [city, setCity] = React.useState<CityKey>("mumbai");
   
   const branch = getBranch(city);
-  const packages = getPackages("umrah", city);
+  const packages = getPackages("ziyarat", city);
   const label = CITY_LABELS[city];
 
   return (
     <>
       <PageBanner
-        title={`Umrah Packages`}
+        title={`Ziyarat Packages`}
         subtitle={`Departures arranged by our ${branch.label}.`}
-        image={IMG.umrah1}
-        crumb={`Umrah`}
+        image={IMG.hero}
+        crumb={`Ziyarat`}
       />
 
       <Section>
         <SectionHeading
           eyebrow={`${label} departures`}
-          title={`Umrah packages for ${label} pilgrims`}
+          title={`Ziyarat packages for ${label} pilgrims`}
           intro={`Select your city below to view our packages. Rates are per person and include airfare, visa, hotels, transport and meals as specified.`}
         />
         <div className="mt-9">

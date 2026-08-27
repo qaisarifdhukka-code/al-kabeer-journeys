@@ -2,7 +2,7 @@ import raw from "./packages.json";
 import { IMG } from "./images";
 import type { CityKey } from "./site";
 
-export type PackageType = "hajj" | "umrah";
+export type PackageType = "hajj" | "umrah" | "ziyarat";
 
 export type Hotel = { name: string; stars: number; distance: string };
 export type SharingOption = { type: string; price: number };
@@ -12,6 +12,7 @@ export type TourPackage = {
   id: string;
   slug: string;
   type: PackageType;
+  category?: "Golden" | "Silver" | "Budget" | undefined;
   city: CityKey;
   title: string;
   days: number;
@@ -36,6 +37,7 @@ const imageMap = IMG as Record<string, string>;
 export const PACKAGES: TourPackage[] = raw.packages.map((p) => ({
   ...p,
   type: p.type as PackageType,
+  category: p.category as TourPackage["category"],
   city: p.city as CityKey,
   image: imageMap[p.image] ?? IMG.hero,
   itinerary: itineraries[p.itinerary] ?? [],

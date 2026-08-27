@@ -55,9 +55,6 @@ export function PackageCard({ pkg }: { pkg: TourPackage }) {
               <Star className="size-3 fill-gold text-gold" aria-hidden="true" /> · {pkg.hotelMakkah.distance}
             </span>
           </li>
-          <li className="flex items-center gap-2">
-            <Users className="size-3.5 text-primary" aria-hidden="true" /> {pkg.seatsLeft} seats available
-          </li>
         </ul>
 
         {/* ── Bottom row: price left, single Book Now button right ── */}

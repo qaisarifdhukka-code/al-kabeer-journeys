@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, HeartHandshake, ShieldCheck, Clock, FileText, Star } from "lucide-react";
 import { Section, SectionHeading } from "@/components/Section";
 import { PackageCard } from "@/components/PackageCard";
-import { CityTabs, type TabKey } from "@/components/CityTabs";
+import { CityTabs } from "@/components/CityTabs";
+import { type CityKey } from "@/data/site";
 import { IMG, GALLERY_IMAGES } from "@/data/images";
 import { getPackages } from "@/data/packages";
 import { BRANCHES, SITE, whatsappLink } from "@/data/site";
@@ -56,14 +57,30 @@ const WHY = [
 ];
 
 function HomePage() {
-  const [hajjFilter, setHajjFilter] = useState<TabKey>("ALL");
-  const [umrahFilter, setUmrahFilter] = useState<TabKey>("ALL");
+  const [hajjFilter, setHajjFilter] = useState<CityKey>("mumbai");
+  const [hajjCategory, setHajjCategory] = useState<"Golden" | "Silver" | "Budget">("Golden");
+  const [umrahFilter, setUmrahFilter] = useState<CityKey>("mumbai");
 
   const allHajj = getPackages("hajj");
-  const hajj = (hajjFilter === "ALL" ? allHajj : allHajj.filter((p) => p.city === hajjFilter)).slice(0, 3);
+  const hajjForCity = allHajj.filter((p) => p.city === hajjFilter);
+  
+  const hajjCategories = ["Golden", "Silver", "Budget"] as const;
+  const availableHajjCategories = hajjCategories.filter(cat => hajjForCity.some(p => p.category === cat));
+  
+  const currentHajjCategory = availableHajjCategories.includes(hajjCategory as any) 
+    ? hajjCategory 
+    : availableHajjCategories[0] || "Golden";
+    
+  useEffect(() => {
+    if (availableHajjCategories.length > 0 && !availableHajjCategories.includes(hajjCategory as any)) {
+      setHajjCategory(availableHajjCategories[0]!);
+    }
+  }, [hajjFilter, hajjCategory, availableHajjCategories]);
+
+  const hajj = hajjForCity.filter((p) => p.category === currentHajjCategory);
 
   const allUmrah = getPackages("umrah");
-  const umrah = (umrahFilter === "ALL" ? allUmrah : allUmrah.filter((p) => p.city === umrahFilter)).slice(0, 3);
+  const umrah = allUmrah.filter((p) => p.city === umrahFilter).slice(0, 3);
 
   return (
     <>
@@ -167,29 +184,38 @@ function HomePage() {
         <div className="mt-9">
           <CityTabs active={hajjFilter} onChange={setHajjFilter} />
         </div>
-        <FadeIn>
-          <div className="mt-10 px-4 sm:px-10 relative">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
+        
+        {/* Category Tabs */}
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          {availableHajjCategories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setHajjCategory(cat as any)}
+              className={`rounded-full px-6 py-2 text-sm font-bold transition-all ${
+                currentHajjCategory === cat
+                  ? "bg-gold text-foreground shadow-md"
+                  : "bg-surface text-muted-foreground hover:bg-gold/20"
+              }`}
             >
-              <CarouselContent className="-ml-4 sm:-ml-6">
-                {hajj.map((p) => (
-                  <CarouselItem key={p.id} className="pl-4 sm:pl-6 md:basis-1/2 lg:basis-1/3">
-                    <div className="h-full pb-4">
-                      <PackageCard pkg={p} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden sm:flex -left-4 sm:-left-8" />
-              <CarouselNext className="hidden sm:flex -right-4 sm:-right-8" />
-            </Carousel>
+              {cat} Package
+            </button>
+          ))}
+        </div>
+
+        <FadeIn key={`${hajjFilter}-${currentHajjCategory}`}>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {hajj.length > 0 ? (
+              hajj.map((p) => (
+                <PackageCard key={p.id} pkg={p} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-10 text-muted-foreground">
+                Packages for this category will be updated soon.
+              </div>
+            )}
           </div>
         </FadeIn>
+        
         <div className="mt-10 text-center">
           <Link
             to="/hajj"
@@ -210,29 +236,21 @@ function HomePage() {
         <div className="mt-9">
           <CityTabs active={umrahFilter} onChange={setUmrahFilter} />
         </div>
-        <FadeIn>
-          <div className="mt-10 px-4 sm:px-10 relative">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4 sm:-ml-6">
-                {umrah.map((p) => (
-                  <CarouselItem key={p.id} className="pl-4 sm:pl-6 md:basis-1/2 lg:basis-1/3">
-                    <div className="h-full pb-4">
-                      <PackageCard pkg={p} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden sm:flex -left-4 sm:-left-8" />
-              <CarouselNext className="hidden sm:flex -right-4 sm:-right-8" />
-            </Carousel>
+        
+        <FadeIn key={umrahFilter}>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {umrah.length > 0 ? (
+              umrah.map((p) => (
+                <PackageCard key={p.id} pkg={p} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-10 text-muted-foreground">
+                Packages for this city will be updated soon.
+              </div>
+            )}
           </div>
         </FadeIn>
+
         <div className="mt-10 text-center">
           <Link
             to="/umrah"

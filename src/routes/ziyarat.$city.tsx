@@ -8,7 +8,7 @@ import { IMG } from "@/data/images";
 import { FadeIn } from "@/components/FadeIn";
 import { ArrowLeft } from "lucide-react";
 
-export const Route = createFileRoute("/umrah/$city")({
+export const Route = createFileRoute("/ziyarat/$city")({
   loader: ({ params }) => {
     if (!isCityKey(params.city)) throw notFound();
     return { city: params.city as CityKey };
@@ -19,39 +19,39 @@ export const Route = createFileRoute("/umrah/$city")({
     const label = CITY_LABELS[city];
     return {
       meta: [
-        { title: `Umrah Packages from ${label} | AL-KABEER` },
+        { title: `Ziyarat Packages from ${label} | AL-KABEER` },
         {
           name: "description",
-          content: `Find the best Umrah packages from ${label}. AL-KABEER Tours & Travels offers dedicated departures from ${label} with complete arrangements.`,
+          content: `Find the best Ziyarat packages from ${label}. AL-KABEER Tours & Travels offers dedicated departures from ${label} with complete arrangements.`,
         },
-        { property: "og:title", content: `Umrah Packages from ${label} | AL-KABEER` },
-        { property: "og:image", content: IMG.umrah1 },
+        { property: "og:title", content: `Ziyarat Packages from ${label} | AL-KABEER` },
+        { property: "og:image", content: IMG.hero },
       ],
     };
   },
-  component: UmrahCityPage,
+  component: ZiyaratCityPage,
 });
 
-function UmrahCityPage() {
+function ZiyaratCityPage() {
   const { city } = Route.useLoaderData() as { city: CityKey };
   
   const branch = getBranch(city);
-  const packages = getPackages("umrah", city);
+  const packages = getPackages("ziyarat", city);
   const label = CITY_LABELS[city];
 
   return (
     <>
       <PageBanner
-        title={`Umrah Packages from ${label}`}
+        title={`Ziyarat Packages from ${label}`}
         subtitle={`Departures arranged by our ${branch.label}.`}
-        image={IMG.umrah1}
-        crumb={`Umrah — ${label}`}
+        image={IMG.hero}
+        crumb={`Ziyarat — ${label}`}
       />
 
       <Section>
         <div className="mb-6 flex justify-center">
           <Link
-            to="/umrah"
+            to="/ziyarat"
             className="inline-flex items-center gap-2 rounded-full bg-surface px-5 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground transition-all hover:bg-gold/20 hover:text-foreground"
           >
             <ArrowLeft className="size-4" aria-hidden="true" /> View all cities
@@ -60,7 +60,7 @@ function UmrahCityPage() {
 
         <SectionHeading
           eyebrow={`${label} departures`}
-          title={`Umrah packages for ${label} pilgrims`}
+          title={`Ziyarat packages for ${label} pilgrims`}
           intro={`Rates are per person and include airfare, visa, hotels, transport and meals as specified.`}
         />
 

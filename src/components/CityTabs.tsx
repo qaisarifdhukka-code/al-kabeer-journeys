@@ -1,16 +1,11 @@
-import { Link } from "@tanstack/react-router";
 import { CITY_KEYS, CITY_LABELS, type CityKey } from "@/data/site";
 
-export type TabKey = CityKey | "ALL";
-
 export function CityTabs({
-  base,
   active,
   onChange,
 }: {
-  base?: "hajj" | "umrah";
-  active?: TabKey;
-  onChange?: (key: TabKey) => void;
+  active?: CityKey;
+  onChange?: (key: CityKey) => void;
 }) {
   const activeClass =
     "bg-background text-primary border-2 border-gold shadow-md shadow-gold/20 font-extrabold";
@@ -20,44 +15,16 @@ export function CityTabs({
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      {base ? (
-        <Link
-          to={`/${base}`}
-          className={`${baseClass} ${!active || active === "ALL" ? activeClass : inactiveClass}`}
-        >
-          All Cities
-        </Link>
-      ) : (
+      {CITY_KEYS.map((city) => (
         <button
+          key={city}
           type="button"
-          onClick={() => onChange?.("ALL")}
-          className={`${baseClass} ${active === "ALL" ? activeClass : inactiveClass}`}
+          onClick={() => onChange?.(city)}
+          className={`${baseClass} ${active === city ? activeClass : inactiveClass}`}
         >
-          All Cities
+          {CITY_LABELS[city]}
         </button>
-      )}
-
-      {CITY_KEYS.map((city) =>
-        base ? (
-          <Link
-            key={city}
-            to={`/${base}/$city`}
-            params={{ city }}
-            className={`${baseClass} ${active === city ? activeClass : inactiveClass}`}
-          >
-            {CITY_LABELS[city]}
-          </Link>
-        ) : (
-          <button
-            key={city}
-            type="button"
-            onClick={() => onChange?.(city)}
-            className={`${baseClass} ${active === city ? activeClass : inactiveClass}`}
-          >
-            {CITY_LABELS[city]}
-          </button>
-        )
-      )}
+      ))}
     </div>
   );
 }

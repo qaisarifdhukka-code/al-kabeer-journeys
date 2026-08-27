@@ -6,13 +6,41 @@ import { BRANCHES, SITE, whatsappLink } from "@/data/site";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
-  { to: "/hajj", label: "Hajj Packages" },
-  { to: "/umrah", label: "Umrah Packages" },
+  { 
+    to: "/hajj", 
+    label: "Hajj Packages",
+    submenu: [
+      { to: "/hajj", label: "All Cities" },
+      { to: "/hajj/mumbai", label: "Mumbai Departures" },
+      { to: "/hajj/kolkata", label: "Kolkata Departures" },
+      { to: "/hajj/gujarat", label: "Gujarat Departures" },
+    ]
+  },
+  { 
+    to: "/umrah", 
+    label: "Umrah Packages",
+    submenu: [
+      { to: "/umrah", label: "All Cities" },
+      { to: "/umrah/mumbai", label: "Mumbai Departures" },
+      { to: "/umrah/kolkata", label: "Kolkata Departures" },
+      { to: "/umrah/gujarat", label: "Gujarat Departures" },
+    ]
+  },
+  { 
+    to: "/ziyarat", 
+    label: "Ziyarat Packages",
+    submenu: [
+      { to: "/ziyarat", label: "All Cities" },
+      { to: "/ziyarat/mumbai", label: "Mumbai Departures" },
+      { to: "/ziyarat/kolkata", label: "Kolkata Departures" },
+      { to: "/ziyarat/gujarat", label: "Gujarat Departures" },
+    ]
+  },
   { to: "/services", label: "Services" },
   { to: "/gallery", label: "Gallery" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -95,10 +123,24 @@ export function SiteHeader() {
                   to={item.to}
                   activeProps={{ className: "text-gold border-gold" }}
                   inactiveProps={{ className: "text-primary-foreground/90 border-transparent hover:text-white hover:border-white/50" }}
-                  className="whitespace-nowrap block text-xs xl:text-[13px] font-bold uppercase tracking-[0.15em] py-4 border-b-2 border-t-2 border-t-transparent transition-all"
+                  className="whitespace-nowrap block text-xs xl:text-[13px] font-bold uppercase tracking-[0.15em] py-4 border-b-2 border-t-2 border-t-transparent transition-all flex items-center gap-1"
                 >
                   {item.label}
+                  {item.submenu && <span className="text-[9px] opacity-70">▼</span>}
                 </Link>
+                {item.submenu && (
+                  <div className="absolute left-0 top-[100%] hidden min-w-[200px] flex-col rounded-b-xl bg-primary shadow-xl group-hover:flex border-t border-white/10 overflow-hidden">
+                    {item.submenu.map((sub) => (
+                      <Link
+                        key={sub.to}
+                        to={sub.to}
+                        className="px-5 py-3.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground/90 hover:bg-gold hover:text-primary transition-colors border-b border-white/5 last:border-0"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </nav>
@@ -113,16 +155,33 @@ export function SiteHeader() {
       >
         <nav className="flex flex-col px-4 py-4 max-h-[85vh] overflow-y-auto pb-8">
           {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={() => setOpen(false)}
-              activeProps={{ className: "bg-primary/5 text-primary font-bold border-l-4 border-primary pl-3" }}
-              inactiveProps={{ className: "text-foreground font-medium border-l-4 border-transparent pl-4 hover:bg-surface" }}
-              className="py-3.5 rounded-r-xl transition-all"
-            >
-              {item.label}
-            </Link>
+            <div key={item.to} className="flex flex-col">
+              <Link
+                to={item.to}
+                onClick={() => setOpen(false)}
+                activeProps={{ className: "bg-primary/5 text-primary font-bold border-l-4 border-primary pl-3" }}
+                inactiveProps={{ className: "text-foreground font-medium border-l-4 border-transparent pl-4 hover:bg-surface" }}
+                className="py-3.5 rounded-r-xl transition-all flex items-center justify-between pr-4"
+              >
+                {item.label}
+              </Link>
+              {item.submenu && (
+                <div className="flex flex-col ml-8 border-l-2 border-border/50 my-1">
+                  {item.submenu.map((sub) => (
+                    <Link
+                      key={sub.to}
+                      to={sub.to}
+                      onClick={() => setOpen(false)}
+                      activeProps={{ className: "text-primary font-bold" }}
+                      inactiveProps={{ className: "text-muted-foreground" }}
+                      className="py-3 pl-4 text-sm hover:text-primary transition-colors relative before:absolute before:left-[-2px] before:top-1/2 before:-mt-[1px] before:w-3 before:h-[2px] before:bg-border/50"
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           
           <div className="mt-4 pt-4 border-t border-border" />

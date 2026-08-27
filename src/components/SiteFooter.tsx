@@ -84,10 +84,10 @@ export function SiteFooter() {
               <li key={b.key} className="space-y-1">
                 <p className="font-semibold">{b.city}</p>
                 <div className="flex gap-3 text-xs opacity-85">
-                  <Link to="/hajj/$city" params={{ city: b.key }} className="hover:text-gold transition-colors">
+                  <Link to="/hajj" className="hover:text-gold transition-colors">
                     Hajj
                   </Link>
-                  <Link to="/umrah/$city" params={{ city: b.key }} className="hover:text-gold transition-colors">
+                  <Link to="/umrah" className="hover:text-gold transition-colors">
                     Umrah
                   </Link>
                 </div>
