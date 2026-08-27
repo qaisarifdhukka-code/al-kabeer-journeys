@@ -82,7 +82,7 @@ function HajjIndex() {
               className={`rounded-full px-6 py-2 text-sm font-bold transition-all ${
                 currentCategory === cat
                   ? "bg-gold text-foreground shadow-md"
-                  : "bg-surface text-muted-foreground hover:bg-gold/20"
+                  : "bg-background shadow-sm text-muted-foreground hover:bg-gold/10 hover:text-foreground"
               }`}
             >
               {cat} Package
