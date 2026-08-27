@@ -8,10 +8,13 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            {/* Rounded-xl logo box to match header */}
-            <span className="grid size-11 place-items-center rounded-xl bg-primary-foreground font-heading text-xl font-extrabold text-primary">
-              K
-            </span>
+            <div className="grid size-12 place-items-center rounded-xl bg-white p-1.5 shadow-sm">
+              <img
+                src="/images/LOGO/original-logo.png"
+                alt="AL-KABEER Logo"
+                className="h-full w-full object-contain"
+              />
+            </div>
             <span className="leading-tight">
               <span className="block font-heading text-lg font-extrabold">AL-KABEER</span>
               <span className="block text-[10px] uppercase tracking-[0.18em] opacity-80">
