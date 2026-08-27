@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Phone, Mail, MapPin, X } from "lucide-react";
+import { Menu, Phone, Mail, MapPin, X, ChevronDown } from "lucide-react";
 import { BRANCHES, SITE, whatsappLink } from "@/data/site";
 
 const NAV = [
@@ -45,6 +45,7 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -156,17 +157,42 @@ export function SiteHeader() {
         <nav className="flex flex-col px-4 py-4 max-h-[85vh] overflow-y-auto pb-8">
           {NAV.map((item) => (
             <div key={item.to} className="flex flex-col">
-              <Link
-                to={item.to}
-                onClick={() => setOpen(false)}
-                activeProps={{ className: "bg-primary/5 text-primary font-bold border-l-4 border-primary pl-3" }}
-                inactiveProps={{ className: "text-foreground font-medium border-l-4 border-transparent pl-4 hover:bg-surface" }}
-                className="py-3.5 rounded-r-xl transition-all flex items-center justify-between pr-4"
-              >
-                {item.label}
-              </Link>
+              <div className="flex items-center">
+                <Link
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  activeProps={{ className: "bg-primary/5 text-primary font-bold border-l-4 border-primary pl-3" }}
+                  inactiveProps={{ className: "text-foreground font-medium border-l-4 border-transparent pl-4 hover:bg-surface" }}
+                  className="flex-1 py-3.5 rounded-r-xl transition-all"
+                >
+                  {item.label}
+                </Link>
+                {item.submenu && (
+                  <button
+                    onClick={() =>
+                      setExpandedMenus((prev) =>
+                        prev.includes(item.label)
+                          ? prev.filter((l) => l !== item.label)
+                          : [...prev, item.label]
+                      )
+                    }
+                    className="p-3 text-muted-foreground hover:text-primary transition-colors"
+                    aria-label="Toggle submenu"
+                  >
+                    <ChevronDown
+                      className={`size-5 transition-transform duration-300 ${
+                        expandedMenus.includes(item.label) ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                )}
+              </div>
               {item.submenu && (
-                <div className="flex flex-col ml-8 border-l-2 border-border/50 my-1">
+                <div 
+                  className={`flex flex-col ml-8 border-l-2 border-border/50 overflow-hidden transition-all duration-300 ease-in-out ${
+                    expandedMenus.includes(item.label) ? "max-h-96 my-1 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
                   {item.submenu.map((sub) => (
                     <Link
                       key={sub.to}
