@@ -32,7 +32,7 @@ export const Route = createFileRoute("/umrah/$city")({
 });
 
 function UmrahCityPage() {
-  const { city } = Route.useLoaderData();
+  const { city } = Route.useLoaderData() as { city: CityKey };
   const branch = getBranch(city);
   const packages = getPackages("umrah", city);
   const label = CITY_LABELS[city];

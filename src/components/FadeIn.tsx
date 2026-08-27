@@ -15,7 +15,7 @@ export function FadeIn({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setIsVisible(true);
           if (ref.current) observer.unobserve(ref.current);
         }
