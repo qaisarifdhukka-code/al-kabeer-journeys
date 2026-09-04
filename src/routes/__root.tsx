@@ -123,13 +123,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
-        <div className="max-w-md text-center">
-          <h1 className="text-2xl font-bold text-foreground">Website Temporarily Unavailable</h1>
-          <p className="mt-4 text-sm text-muted-foreground">
-            This website is currently undergoing maintenance or pending activation. Please check back later or contact your web administrator.
-          </p>
-        </div>
+      <div className="flex min-h-screen flex-col bg-background">
+        <SiteHeader />
+        <main className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <FloatingWhatsApp />
       </div>
     </QueryClientProvider>
   );
